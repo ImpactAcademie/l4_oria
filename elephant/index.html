@@ -3,188 +3,222 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="theme-color" content="#38291f">
-	<meta name="description" content="Découvrez les éléphants du monde et soutenez les sanctuaires qui les protègent grâce à une adoption symbolique.">
-	<title>Les Géants de Terre — Protéger les éléphants</title>
+	<meta name="theme-color" content="#392b22">
+	<meta name="description" content="Découvrez les trois espèces d’éléphants et trouvez une façon responsable de soutenir leur conservation.">
+	<title>Terre de Géants — Les éléphants, à protéger ensemble</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,600,20,1;9..144,700,20,1&display=swap" rel="stylesheet">
 	<style>
-		:root { --earth:#38291f; --earth-2:#584132; --clay:#9b6444; --sand:#eadcc9; --paper:#f5f0e8; --white:#fffdf9; --ink:#30271f; --muted:#82776c; --moss:#52634a; --gold:#e9c675; --line:#e4dbcf; --serif:"Fraunces", Georgia, serif; --sans:"DM Sans", sans-serif; }
-		* { box-sizing:border-box; }
-		body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans); }
-		button,input,select { font:inherit; } button { color:inherit; }
-		.topbar { position:relative; z-index:2; display:flex; height:72px; align-items:center; justify-content:space-between; gap:20px; padding:0 6vw; background:var(--earth); color:#fffaf1; }
-		.brand { display:inline-flex; align-items:center; gap:10px; font-size:15px; font-weight:700; }
-		.brand-icon { display:grid; width:36px; height:36px; place-items:center; border:1px solid rgba(233,198,117,.65); border-radius:50%; color:var(--gold); }
-		.brand-icon svg { width:22px; height:22px; }
-		.top-note { color:#d0c0af; font-size:11px; }
-		.top-button,.primary-button,.outline-button { display:inline-flex; align-items:center; justify-content:center; gap:9px; border:0; border-radius:999px; cursor:pointer; font-weight:700; transition:transform .2s ease,background .2s ease; }
-		.top-button { padding:11px 16px; background:var(--gold); color:var(--earth); font-size:11px; }
-		.top-button:hover,.primary-button:hover { transform:translateY(-2px); background:#f2d78e; }
-		.hero { position:relative; min-height:500px; overflow:hidden; padding:68px 8vw 58px; background:#463327; color:white; }
-		.hero::before { position:absolute; inset:0 0 0 35%; content:""; background:linear-gradient(90deg,#463327 0%,rgba(70,51,39,.93) 9%,rgba(70,51,39,.1) 63%),linear-gradient(0deg,rgba(40,27,18,.2),rgba(40,27,18,.1)),url("https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1800&q=88") center 46%/cover; }
-		.hero::after { position:absolute; right:7%; bottom:-190px; width:390px; height:390px; border:1px solid rgba(233,198,117,.25); border-radius:50%; content:""; }
-		.hero-content { position:relative; z-index:1; max-width:565px; animation:arrive .7s ease both; }
-		.kicker { display:flex; align-items:center; gap:10px; color:var(--gold); font-size:10px; font-weight:700; letter-spacing:1.8px; text-transform:uppercase; }
-		.kicker::before { width:24px; height:1px; background:currentColor; content:""; }
-		h1,h2,h3,p { margin-top:0; }
-		h1 { max-width:560px; margin:20px 0 14px; font-family:var(--serif); font-size:clamp(48px,6.3vw,78px); font-weight:600; line-height:.99; }
-		h1 span { color:#e3bf83; font-style:italic; }
-		.hero-copy { max-width:440px; margin:0 0 25px; color:#e1d3c4; font-size:14px; line-height:1.8; }
-		.primary-button { padding:14px 19px; background:var(--gold); color:var(--earth); font-size:12px; }
-		.primary-button svg { width:16px; height:16px; }
-		.hero-caption { display:block; margin-top:13px; color:#cdbdac; font-size:10px; }
-		.hero-seal { position:absolute; right:9%; bottom:32px; z-index:1; display:grid; width:96px; height:96px; place-items:center; border:1px solid rgba(255,250,241,.8); border-radius:50%; color:white; font-family:var(--serif); font-size:14px; line-height:1.12; text-align:center; transform:rotate(8deg); }
-		.hero-seal span { display:block; color:var(--gold); font-family:var(--sans); font-size:8px; font-weight:700; letter-spacing:1px; text-transform:uppercase; }
-		.notice { display:flex; align-items:flex-start; gap:13px; padding:16px max(5.5vw,calc((100vw - 1320px)/2)); background:#e8ddce; color:#594737; font-size:12px; line-height:1.65; }
-		.notice svg { flex:0 0 auto; width:19px; height:19px; margin-top:1px; color:#79553c; }
-		.notice strong { color:var(--earth); }
-		.main { width:min(1320px,89%); margin:0 auto; padding:52px 0 70px; }
-		.section-head { display:flex; align-items:end; justify-content:space-between; gap:20px; margin-bottom:23px; }
-		.section-overline { margin-bottom:7px; color:#976746; font-size:10px; font-weight:700; letter-spacing:1.6px; text-transform:uppercase; }
-		h2 { margin-bottom:0; font-family:var(--serif); font-size:35px; font-weight:600; line-height:1.1; }
-		.result-count { color:var(--muted); font-size:12px; }
-		.toolbar { display:flex; align-items:center; gap:9px; margin-bottom:23px; }
-		.search-wrap { position:relative; flex:1 1 250px; max-width:350px; }
-		.search-wrap svg { position:absolute; top:50%; left:13px; width:17px; height:17px; color:#897c6e; transform:translateY(-50%); }
-		.search { width:100%; height:43px; padding:0 13px 0 39px; border:1px solid var(--line); border-radius:6px; outline:none; background:var(--white); }
-		.search:focus,select:focus { border-color:#a47858; box-shadow:0 0 0 3px rgba(155,100,68,.14); }
-		.filters { display:flex; flex:1; gap:7px; overflow-x:auto; scrollbar-width:none; }
-		.filters::-webkit-scrollbar { display:none; }
-		.filter-button { flex:0 0 auto; padding:9px 13px; border:1px solid var(--line); border-radius:999px; background:transparent; color:#695c50; cursor:pointer; font-size:10px; font-weight:600; }
-		.filter-button[aria-pressed="true"] { border-color:var(--earth); background:var(--earth); color:white; }
-		.favorites-toggle { display:inline-flex; flex:0 0 auto; align-items:center; gap:6px; padding:9px 12px; border:1px solid var(--line); border-radius:999px; background:transparent; cursor:pointer; font-size:10px; font-weight:600; }
-		.favorites-toggle svg { width:15px; height:15px; color:#a45d45; }
-		.elephant-grid { columns:4 215px; column-gap:16px; }
-		.elephant-card { overflow:hidden; break-inside:avoid; margin:0 0 17px; border:1px solid #eee5d9; border-radius:6px; background:var(--white); animation:arrive .4s ease both; }
-		.photo-wrap { position:relative; overflow:hidden; background:#dcd0c1; }
-		.elephant-photo { display:block; width:100%; object-fit:cover; transition:transform .45s ease; }
-		.elephant-card:hover .elephant-photo { transform:scale(1.04); }
-		.photo-tall { height:285px; } .photo-medium { height:225px; } .photo-short { height:185px; }
-		.habitat-label { position:absolute; bottom:10px; left:10px; padding:7px 10px; border:1px solid rgba(255,255,255,.4); border-radius:99px; background:rgba(56,41,31,.78); color:white; font-size:9px; backdrop-filter:blur(4px); }
-		.heart-button { position:absolute; top:10px; right:10px; display:grid; width:35px; height:35px; place-items:center; border:0; border-radius:50%; background:rgba(255,253,249,.94); cursor:pointer; }
-		.heart-button svg { width:18px; height:18px; fill:transparent; stroke:var(--earth); stroke-width:1.8; }
-		.heart-button.is-favorite svg { fill:#ad6949; stroke:#ad6949; }
-		.card-info { padding:13px 14px 14px; }
-		.card-title-row { display:flex; align-items:baseline; justify-content:space-between; gap:8px; }
-		.card-title { margin:0; font-family:var(--serif); font-size:19px; font-weight:600; }
-		.card-region { color:var(--muted); font-size:9px; white-space:nowrap; }
-		.card-summary { margin:7px 0 11px; color:#766d64; font-size:11px; line-height:1.6; }
-		.card-meta { display:flex; flex-wrap:wrap; gap:5px; }
-		.tag { padding:5px 7px; border-radius:3px; background:#eee4d6; color:#624b37; font-size:9px; font-weight:600; }
-		.card-bottom { display:flex; align-items:center; justify-content:space-between; gap:7px; margin-top:12px; padding-top:10px; border-top:1px solid #f0e9df; }
-		.program-label { color:var(--muted); font-size:9px; }
-		.detail-button { padding:0; border:0; background:none; color:#765138; cursor:pointer; font-size:10px; font-weight:700; }
-		.empty-state { display:none; padding:55px 12px; color:var(--muted); text-align:center; }
-		.empty-state h3 { margin-bottom:6px; color:var(--ink); font-family:var(--serif); font-size:24px; }
-		.adoption-note { position:relative; display:flex; align-items:center; justify-content:space-between; gap:25px; overflow:hidden; margin-top:56px; padding:27px 30px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
-		.adoption-note::after { position:absolute; right:18%; bottom:-100px; width:165px; height:165px; border:1px solid #ddc9b1; border-radius:50%; content:""; }
-		.adoption-note h2 { font-size:27px; }
-		.adoption-note p { max-width:620px; margin:8px 0 0; color:var(--muted); font-size:12px; line-height:1.7; }
-		.outline-button { z-index:1; flex:0 0 auto; padding:12px 17px; border:1px solid #886248; background:transparent; color:#624b37; font-size:10px; }
-		.outline-button:hover { background:#eee4d6; }
-		footer { display:flex; justify-content:space-between; gap:18px; padding:23px 6vw; background:var(--earth); color:#cdbdac; font-size:10px; }
-		.overlay { position:fixed; z-index:10; inset:0; display:none; align-items:center; justify-content:center; padding:18px; background:rgba(35,24,17,.67); backdrop-filter:blur(4px); }
-		.overlay.is-open { display:flex; }
-		.dialog { position:relative; width:min(555px,100%); max-height:min(90vh,780px); overflow:auto; padding:31px; border:1px solid rgba(255,255,255,.5); border-radius:8px; background:var(--white); animation:arrive .25s ease both; }
-		.dialog-close { position:absolute; top:13px; right:13px; display:grid; width:35px; height:35px; place-items:center; border:1px solid var(--line); border-radius:50%; background:transparent; cursor:pointer; }
-		.dialog-close svg { width:17px; height:17px; }
-		.dialog h2 { max-width:430px; margin:8px 28px 8px 0; font-size:31px; }
-		.dialog-intro { margin-bottom:22px; color:var(--muted); font-size:12px; line-height:1.7; }
-		.form-field { margin:0 0 17px; padding:0; border:0; }
-		.form-field legend,.form-label { display:block; margin-bottom:8px; font-size:11px; font-weight:700; }
-		.option-row { display:flex; flex-wrap:wrap; gap:7px; }
-		.option { position:relative; }
-		.option input { position:absolute; opacity:0; }
-		.option span { display:block; padding:9px 11px; border:1px solid var(--line); border-radius:5px; color:#6c6055; cursor:pointer; font-size:10px; }
-		.option input:checked+span { border-color:#886248; background:#eee4d6; color:#58402e; font-weight:700; }
-		.option input:focus-visible+span { outline:2px solid #a45d45; outline-offset:2px; }
-		select { width:100%; height:42px; padding:0 11px; border:1px solid var(--line); border-radius:5px; outline:none; background:white; }
-		.dialog .primary-button { width:100%; margin-top:3px; }
-		.match-results { display:none; margin-top:22px; padding-top:16px; border-top:1px solid var(--line); }
-		.match-results.is-visible { display:block; }
-		.match-results h3 { margin-bottom:10px; font-family:var(--serif); font-size:21px; }
-		.match-item { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 0; border-top:1px solid #f0e9df; }
-		.match-item strong { display:block; font-family:var(--serif); font-size:16px; }
-		.match-item small { color:var(--muted); font-size:10px; }
-		.match-score { color:#60462f; font-size:11px; font-weight:700; }
-		.match-disclaimer { margin:11px 0 0; color:#766d64; font-size:11px; line-height:1.65; }
-		.detail-view { display:none; }
-		.detail-view.is-visible { display:block; }
-		.detail-photo { width:100%; height:230px; margin:8px 0 16px; border-radius:5px; object-fit:cover; }
-		.detail-copy { color:#70665d; font-size:12px; line-height:1.75; }
-		.detail-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:17px 0; }
-		.detail-stat { padding:12px 8px; background:#f1e8dc; text-align:center; }
-		.detail-stat strong { display:block; margin-bottom:4px; color:#664b34; font-size:12px; }
-		.detail-stat span { color:var(--muted); font-size:9px; }
-		@keyframes arrive { from { opacity:0; transform:translateY(11px); } to { opacity:1; transform:translateY(0); } }
-		@media(max-width:900px) { .elephant-grid { columns:3 195px; } .toolbar { flex-wrap:wrap; } .filters { order:3; flex-basis:100%; } .favorites-toggle { margin-left:auto; } }
-		@media(max-width:600px) {
-			.topbar { height:64px; padding:0 16px; } .top-note { display:none; } .top-button { padding:10px 12px; font-size:9px; }
-			.hero { min-height:570px; padding:43px 22px; } .hero::before { inset:42% 0 0; background:linear-gradient(180deg,#463327 0%,rgba(70,51,39,.12) 58%),url("https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1000&q=82") center 48%/cover; }
-			h1 { font-size:51px; } .hero-copy { max-width:350px; font-size:13px; } .hero-seal { right:17px; bottom:17px; width:78px; height:78px; font-size:11px; }
-			.notice { padding:14px 17px; font-size:11px; } .main { width:calc(100% - 34px); padding-top:38px; } .section-head { align-items:start; flex-direction:column; gap:8px; } h2 { font-size:30px; }
-			.toolbar { gap:8px; } .search-wrap { flex-basis:100%; max-width:none; } .favorites-toggle { margin-left:0; }
-			.elephant-grid { columns:2 145px; column-gap:10px; } .elephant-card { margin-bottom:11px; } .photo-tall { height:220px; } .photo-medium { height:175px; } .photo-short { height:150px; }
-			.card-info { padding:10px; } .card-title { font-size:17px; } .card-region { display:none; } .card-summary { font-size:10px; }
-			.adoption-note { align-items:start; flex-direction:column; margin-top:42px; padding:22px 0; } .adoption-note h2 { font-size:24px; } footer { flex-direction:column; padding:20px 17px; }
-			.dialog { padding:27px 20px; } .dialog h2 { font-size:27px; }
+		:root {
+			--soil: #392b22;
+			--bark: #594333;
+			--clay: #a96f4d;
+			--rust: #cb805a;
+			--moss: #66704b;
+			--sage: #dfe2ce;
+			--paper: #f4efe7;
+			--cream: #fffcf6;
+			--ink: #342a24;
+			--muted: #81756c;
+			--line: #e5dcd0;
+			--serif: "Fraunces", Georgia, serif;
+			--sans: "DM Sans", sans-serif;
 		}
-		@media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; animation-duration:.01ms!important; transition-duration:.01ms!important; } }
+		* { box-sizing: border-box; }
+		body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+		button, input, select { font: inherit; }
+		button { color: inherit; }
+		.topbar { position: relative; z-index: 2; display: flex; height: 72px; align-items: center; justify-content: space-between; gap: 20px; padding: 0 6vw; background: var(--soil); color: var(--cream); }
+		.brand { display: inline-flex; align-items: center; gap: 11px; font-size: 15px; font-weight: 700; }
+		.brand-mark { display: grid; width: 35px; height: 35px; place-items: center; border: 1px solid rgba(223,226,206,.55); border-radius: 50%; color: var(--sage); }
+		.brand-mark svg { width: 20px; height: 20px; }
+		.brand em { color: #d6a27e; font-family: var(--serif); font-weight: 600; }
+		.top-note { color: #c7b7a9; font-size: 11px; }
+		.top-button, .primary-button, .outline-button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 0; border-radius: 999px; cursor: pointer; font-weight: 700; transition: transform .2s ease, background .2s ease; }
+		.top-button { padding: 11px 16px; background: var(--sage); color: var(--soil); font-size: 11px; }
+		.top-button:hover, .primary-button:hover { transform: translateY(-2px); background: #eef0df; }
+		.hero { position: relative; min-height: 520px; overflow: hidden; padding: 68px 8vw 58px; background: #47382d; color: var(--cream); }
+		.hero::before { position: absolute; inset: 0 0 0 34%; content: ""; background: linear-gradient(90deg, #47382d 0%, rgba(71,56,45,.94) 11%, rgba(71,56,45,.2) 62%), linear-gradient(0deg, rgba(39,30,23,.24), transparent 45%), url("https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1900&q=88") center 48% / cover; }
+		.hero::after { position: absolute; right: -100px; bottom: -230px; width: 470px; height: 470px; border: 1px solid rgba(223,226,206,.28); border-radius: 50%; content: ""; }
+		.hero-content { position: relative; z-index: 1; max-width: 560px; animation: arrive .7s ease both; }
+		.kicker { display: flex; align-items: center; gap: 10px; color: var(--sage); font-size: 10px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; }
+		.kicker::before { width: 25px; height: 1px; background: var(--rust); content: ""; }
+		h1, h2, h3, p { margin-top: 0; }
+		h1 { max-width: 550px; margin: 20px 0 15px; font-family: var(--serif); font-size: clamp(48px, 6.4vw, 82px); font-weight: 600; letter-spacing: 0; line-height: .98; }
+		h1 span { color: #d6a27e; font-style: italic; }
+		.hero-copy { max-width: 420px; margin: 0 0 24px; color: #e1d6ca; font-size: 14px; line-height: 1.8; }
+		.primary-button { padding: 14px 19px; background: var(--sage); color: var(--soil); font-size: 12px; }
+		.primary-button svg { width: 16px; height: 16px; }
+		.hero-footnote { display: block; margin-top: 13px; color: #d0c2b4; font-size: 10px; }
+		.hero-index { position: absolute; right: 7vw; bottom: 34px; z-index: 1; color: rgba(255,252,246,.8); font-family: var(--serif); font-size: 12px; text-align: right; }
+		.hero-index strong { display: block; color: var(--sage); font-size: 34px; font-weight: 600; }
+		.notice { display: flex; align-items: center; justify-content: center; gap: 11px; padding: 14px 20px; background: var(--sage); color: #404632; font-size: 11px; text-align: center; }
+		.notice svg { flex: 0 0 auto; width: 17px; height: 17px; }
+		.notice strong { font-weight: 700; }
+		.main { width: min(1320px, 89%); margin: 0 auto; padding: 49px 0 70px; }
+		.section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 23px; }
+		.section-overline { margin-bottom: 7px; color: #956344; font-size: 10px; font-weight: 700; letter-spacing: 1.7px; text-transform: uppercase; }
+		h2 { margin-bottom: 0; font-family: var(--serif); font-size: 35px; font-weight: 600; line-height: 1.1; }
+		.section-note { margin: 7px 0 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+		.result-count { color: var(--muted); font-size: 12px; }
+		.toolbar { display: flex; align-items: center; gap: 9px; margin-bottom: 24px; }
+		.search-wrap { position: relative; flex: 1 1 250px; max-width: 350px; }
+		.search-wrap svg { position: absolute; top: 50%; left: 13px; width: 17px; height: 17px; color: #87796d; transform: translateY(-50%); }
+		.search { width: 100%; height: 43px; padding: 0 13px 0 39px; border: 1px solid var(--line); border-radius: 6px; outline: none; background: var(--cream); }
+		.search:focus, select:focus { border-color: var(--clay); box-shadow: 0 0 0 3px rgba(169,111,77,.14); }
+		.filters { display: flex; flex: 1; gap: 7px; overflow-x: auto; scrollbar-width: none; }
+		.filters::-webkit-scrollbar { display: none; }
+		.filter-button { flex: 0 0 auto; padding: 9px 13px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: #695d53; cursor: pointer; font-size: 10px; font-weight: 600; }
+		.filter-button[aria-pressed="true"] { border-color: var(--soil); background: var(--soil); color: var(--cream); }
+		.favorites-toggle { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 6px; padding: 9px 12px; border: 1px solid var(--line); border-radius: 999px; background: transparent; cursor: pointer; font-size: 10px; font-weight: 600; }
+		.favorites-toggle svg { width: 15px; height: 15px; color: var(--clay); }
+		.elephant-grid { columns: 4 215px; column-gap: 16px; }
+		.elephant-card { overflow: hidden; break-inside: avoid; margin: 0 0 17px; border: 1px solid #e9dfd2; border-radius: 6px; background: var(--cream); animation: arrive .4s ease both; }
+		.photo-wrap { position: relative; overflow: hidden; background: #ddd4c7; }
+		.elephant-photo { display: block; width: 100%; object-fit: cover; transition: transform .45s ease; }
+		.elephant-card:hover .elephant-photo { transform: scale(1.035); }
+		.photo-tall { height: 290px; } .photo-medium { height: 230px; } .photo-short { height: 185px; }
+		.place-label { position: absolute; bottom: 10px; left: 10px; padding: 7px 10px; border: 1px solid rgba(255,255,255,.35); border-radius: 99px; background: rgba(57,43,34,.76); color: white; font-size: 9px; backdrop-filter: blur(4px); }
+		.heart-button { position: absolute; top: 10px; right: 10px; display: grid; width: 35px; height: 35px; place-items: center; border: 0; border-radius: 50%; background: rgba(255,252,246,.95); cursor: pointer; }
+		.heart-button svg { width: 18px; height: 18px; fill: transparent; stroke: var(--soil); stroke-width: 1.8; }
+		.heart-button.is-favorite svg { fill: var(--rust); stroke: var(--rust); }
+		.elephant-info { padding: 13px 14px 14px; }
+		.elephant-title-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+		.elephant-title { margin: 0; font-family: var(--serif); font-size: 18px; font-weight: 600; }
+		.elephant-type { color: var(--muted); font-size: 9px; white-space: nowrap; }
+		.elephant-summary { margin: 7px 0 11px; color: #766b61; font-size: 11px; line-height: 1.55; }
+		.tags { display: flex; flex-wrap: wrap; gap: 5px; }
+		.tag { padding: 5px 7px; border-radius: 3px; background: #e9e6d8; color: #50523d; font-size: 9px; font-weight: 600; }
+		.card-bottom { display: flex; align-items: center; justify-content: space-between; gap: 7px; margin-top: 12px; padding-top: 10px; border-top: 1px solid #eee7dd; }
+		.region-label { color: var(--muted); font-size: 10px; }
+		.detail-button { padding: 0; border: 0; background: none; color: #795039; cursor: pointer; font-size: 10px; font-weight: 700; }
+		.empty-state { display: none; padding: 55px 12px; color: var(--muted); text-align: center; }
+		.empty-state h3 { margin-bottom: 6px; color: var(--ink); font-family: var(--serif); font-size: 24px; }
+		.support-band { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 25px; overflow: hidden; margin-top: 55px; padding: 29px 31px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+		.support-band::after { position: absolute; right: 18%; bottom: -106px; width: 170px; height: 170px; border: 1px solid #d9cbb8; border-radius: 50%; content: ""; }
+		.support-band h2 { font-size: 27px; }
+		.support-band p { max-width: 640px; margin: 8px 0 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+		.outline-button { z-index: 1; flex: 0 0 auto; padding: 12px 17px; border: 1px solid var(--bark); background: transparent; color: var(--bark); font-size: 10px; }
+		.outline-button:hover { background: #e9e1d7; }
+		footer { display: flex; justify-content: space-between; gap: 18px; padding: 23px 6vw; background: var(--soil); color: #cdbdae; font-size: 10px; }
+		.overlay { position: fixed; z-index: 10; inset: 0; display: none; align-items: center; justify-content: center; padding: 18px; background: rgba(32,24,19,.67); backdrop-filter: blur(4px); }
+		.overlay.is-open { display: flex; }
+		.dialog { position: relative; width: min(550px, 100%); max-height: min(90vh, 780px); overflow: auto; padding: 31px; border: 1px solid rgba(255,255,255,.5); border-radius: 8px; background: var(--cream); animation: arrive .25s ease both; }
+		.dialog-close { position: absolute; top: 13px; right: 13px; display: grid; width: 35px; height: 35px; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: transparent; cursor: pointer; }
+		.dialog-close svg { width: 17px; height: 17px; }
+		.dialog h2 { max-width: 420px; margin: 8px 28px 8px 0; font-size: 31px; }
+		.dialog-intro { margin-bottom: 22px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+		.form-field { margin: 0 0 17px; padding: 0; border: 0; }
+		.form-field legend, .form-label { display: block; margin-bottom: 8px; font-size: 11px; font-weight: 700; }
+		.option-row { display: flex; flex-wrap: wrap; gap: 7px; }
+		.option { position: relative; }
+		.option input { position: absolute; opacity: 0; }
+		.option span { display: block; padding: 9px 11px; border: 1px solid var(--line); border-radius: 5px; color: #695d53; cursor: pointer; font-size: 10px; }
+		.option input:checked + span { border-color: var(--bark); background: #e9e1d7; color: var(--soil); font-weight: 700; }
+		.option input:focus-visible + span { outline: 2px solid var(--clay); outline-offset: 2px; }
+		select { width: 100%; height: 42px; padding: 0 11px; border: 1px solid var(--line); border-radius: 5px; outline: none; background: white; }
+		.dialog .primary-button { width: 100%; margin-top: 3px; }
+		.match-results { display: none; margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--line); }
+		.match-results.is-visible { display: block; }
+		.match-results h3 { margin-bottom: 10px; font-family: var(--serif); font-size: 21px; }
+		.match-item { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 0; border-top: 1px solid #eee7dd; }
+		.match-item strong { display: block; font-family: var(--serif); font-size: 16px; }
+		.match-item small { color: var(--muted); font-size: 10px; }
+		.match-score { color: #5b6544; font-size: 11px; font-weight: 700; }
+		.detail-view { display: none; }
+		.detail-view.is-visible { display: block; }
+		.detail-photo { width: 100%; height: 225px; margin: 8px 0 16px; border-radius: 5px; object-fit: cover; }
+		.detail-copy { color: #70665d; font-size: 12px; line-height: 1.75; }
+		.detail-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 17px 0; }
+		.detail-stat { padding: 12px 8px; background: #efebe0; text-align: center; }
+		.detail-stat strong { display: block; margin-bottom: 4px; color: #596044; font-size: 12px; }
+		.detail-stat span { color: var(--muted); font-size: 9px; }
+		@keyframes arrive { from { opacity: 0; transform: translateY(11px); } to { opacity: 1; transform: translateY(0); } }
+		@media (max-width: 900px) { .elephant-grid { columns: 3 195px; } .toolbar { flex-wrap: wrap; } .filters { order: 3; flex-basis: 100%; } .favorites-toggle { margin-left: auto; } }
+		@media (max-width: 600px) {
+			.topbar { height: 63px; padding: 0 16px; } .top-note { display: none; } .top-button { padding: 10px 12px; font-size: 10px; }
+			.hero { min-height: 570px; padding: 45px 23px; } .hero::before { inset: 42% 0 0; background: linear-gradient(180deg, #47382d 0%, rgba(71,56,45,.18) 54%), url("https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1000&q=82") center / cover; }
+			h1 { font-size: 52px; } .hero-copy { max-width: 345px; font-size: 13px; } .hero-index { right: 17px; bottom: 16px; font-size: 10px; } .hero-index strong { font-size: 26px; }
+			.notice { align-items: start; justify-content: start; padding: 13px 17px; text-align: left; line-height: 1.55; }
+			.main { width: calc(100% - 34px); padding-top: 38px; } .section-head { align-items: start; flex-direction: column; gap: 8px; } h2 { font-size: 30px; }
+			.toolbar { gap: 8px; } .search-wrap { flex-basis: 100%; max-width: none; } .favorites-toggle { margin-left: 0; }
+			.elephant-grid { columns: 2 145px; column-gap: 10px; } .elephant-card { margin-bottom: 11px; } .photo-tall { height: 220px; } .photo-medium { height: 175px; } .photo-short { height: 150px; }
+			.elephant-info { padding: 10px; } .elephant-title { font-size: 16px; } .elephant-type { display: none; } .elephant-summary { font-size: 10px; }
+			.support-band { align-items: start; flex-direction: column; margin-top: 42px; padding: 22px 0; } .support-band h2 { font-size: 24px; } footer { flex-direction: column; padding: 20px 17px; }
+			.dialog { padding: 27px 20px; } .dialog h2 { font-size: 27px; }
+		}
+		@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
 	</style>
 </head>
 <body>
 	<header class="topbar">
-		<div class="brand"><span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 5c-1.8 0-3 1.3-3 3v5c0 3 1.7 5 4.5 5H13c2.8 0 4.5-2 4.5-5V8c0-1.7-1.2-3-3-3-1 0-1.8.4-2.5 1.2C11.3 5.4 10.3 5 9.5 5Z"/><path d="M17.5 11H20v3h-2.5M9 10h.01M14 10h.01M10 14c1.2.8 2.5.8 3.5 0"/></svg></span>Les Géants de Terre</div>
-		<span class="top-note">Comprendre. Protéger. Transmettre.</span>
-		<button class="top-button" type="button" data-open-quiz>Soutenir une cause <span aria-hidden="true">↗</span></button>
+		<div class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M8 4c-2.8 0-4.5 2.1-4.5 5v4c0 4 2.2 6.5 5.2 6.5h6.6c3 0 5.2-2.5 5.2-6.5V9c0-2.9-1.7-5-4.5-5-1.2 0-2.2.5-3 1.4C12.2 4.5 11.2 4 10 4Z"/><path d="M8 12.5c-.7 1-1.2 2.1-1.2 3M16 12.5c.7 1 1.2 2.1 1.2 3M10 15h.01M14 15h.01"/></svg></span><span>Terre <em>de Géants</em></span></div>
+		<span class="top-note">Comprendre pour mieux protéger.</span>
+		<button class="top-button" type="button" data-open-quiz>Choisir mon engagement <span aria-hidden="true">↗</span></button>
 	</header>
 
 	<section class="hero" aria-labelledby="hero-title">
 		<div class="hero-content">
-			<div class="kicker">Rencontres au rythme des géants</div>
-			<h1 id="hero-title">Le monde est plus vaste <span>avec eux.</span></h1>
-			<p class="hero-copy">Silhouettes des savanes, ombres des forêts, chemins d’Asie : partez à la rencontre des éléphants et découvrez comment contribuer à leur protection.</p>
-			<button class="primary-button" type="button" data-open-quiz>Choisir ma façon d’aider <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
-			<span class="hero-caption">3 espèces vivantes · des écosystèmes à protéger</span>
+			<div class="kicker">Rencontres avec les géants du vivant</div>
+			<h1 id="hero-title">Ils ont la mémoire de <span>la Terre.</span></h1>
+			<p class="hero-copy">Trois espèces, des liens familiaux puissants et des paysages à préserver. Découvrez les éléphants et trouvez une manière concrète de soutenir leur avenir.</p>
+			<button class="primary-button" type="button" data-open-quiz>Quel projet soutenir ? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+			<span class="hero-footnote">Un guide pour découvrir, parrainer et protéger.</span>
 		</div>
-		<div class="hero-seal" aria-hidden="true">Gardiens<br>du vivant<span>depuis toujours</span></div>
+		<div class="hero-index" aria-hidden="true"><strong>03</strong>espèces vivantes</div>
 	</section>
-
-	<aside class="notice" role="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg><span><strong>À savoir :</strong> un éléphant n’est pas un animal de compagnie et ne peut pas être adopté pour vivre chez soi. Ici, « adopter » signifie soutenir symboliquement un programme de conservation, un sanctuaire ou la protection d’un habitat.</span></aside>
+	<div class="notice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg><span><strong>Un éléphant ne s’adopte pas comme un animal domestique.</strong> Ici, « adopter » signifie soutenir sa protection par un parrainage responsable auprès d’un organisme reconnu.</span></div>
 
 	<main class="main">
-		<div class="section-head"><div><div class="section-overline">Atlas des éléphants & de leurs habitats</div><h2>Trois espèces, des mondes entiers.</h2></div><span class="result-count" id="result-count" aria-live="polite"></span></div>
-		<div class="toolbar" aria-label="Filtres des éléphants">
-			<label class="search-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg><input class="search" id="search" type="search" placeholder="Espèce, région, habitat..." aria-label="Rechercher un profil d’éléphant"></label>
+		<div class="section-head">
+			<div><div class="section-overline">Atlas des géants</div><h2>Trois espèces. Des mondes à protéger.</h2><p class="section-note">Les cartes sont des portraits de leurs espèces et habitats, pas des animaux proposés à la détention.</p></div>
+			<span class="result-count" id="result-count" aria-live="polite"></span>
+		</div>
+		<div class="toolbar" aria-label="Filtres des espèces d’éléphants">
+			<label class="search-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg><input class="search" id="search" type="search" placeholder="Espèce, région, habitat..." aria-label="Rechercher une espèce ou un habitat"></label>
 			<div class="filters" id="filters">
-				<button class="filter-button" type="button" data-filter="Tous" aria-pressed="true">Tous les profils</button>
-				<button class="filter-button" type="button" data-filter="Savane" aria-pressed="false">Savane</button>
-				<button class="filter-button" type="button" data-filter="Forêt" aria-pressed="false">Forêt</button>
+				<button class="filter-button" type="button" data-filter="Tous" aria-pressed="true">Toutes les espèces</button>
+				<button class="filter-button" type="button" data-filter="Afrique" aria-pressed="false">Afrique</button>
 				<button class="filter-button" type="button" data-filter="Asie" aria-pressed="false">Asie</button>
-				<button class="filter-button" type="button" data-filter="Protection" aria-pressed="false">Protection</button>
+				<button class="filter-button" type="button" data-filter="Forêt" aria-pressed="false">Forêt</button>
+				<button class="filter-button" type="button" data-filter="Savane" aria-pressed="false">Savane</button>
 			</div>
 			<button class="favorites-toggle" type="button" id="favorites-toggle" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 8.8c0 5.2-8.8 10-8.8 10s-8.8-4.8-8.8-10A4.5 4.5 0 0 1 12 6.4a4.5 4.5 0 0 1 8.8 2.4Z"/></svg>À garder <span id="favorite-count">0</span></button>
 		</div>
 		<div class="elephant-grid" id="elephant-grid" aria-live="polite"></div>
-		<div class="empty-state" id="empty-state"><h3>Aucun profil dans cette sélection.</h3><p>Essayez un autre filtre ou un mot-clé différent.</p></div>
-		<section class="adoption-note"><div><div class="section-overline">Un geste, un impact</div><h2>Adopter symboliquement, c’est soutenir le vivant.</h2><p>Les programmes varient selon les organismes : protection des habitats, soins vétérinaires, coexistence avec les communautés locales ou suivi des troupeaux. Vérifiez toujours les pratiques et la transparence d’un sanctuaire avant de contribuer.</p></div><button class="outline-button" type="button" data-open-quiz>Composer mon soutien</button></section>
+		<div class="empty-state" id="empty-state"><h3>Aucun portrait dans cette sélection.</h3><p>Essayez un autre mot-clé ou filtre.</p></div>
+		<section class="support-band">
+			<div><div class="section-overline">Un geste à leur échelle</div><h2>La meilleure adoption est un engagement responsable.</h2><p>Un parrainage finance, selon l’organisme, la protection de l’habitat, les soins ou la cohabitation avec les communautés locales. Choisissez une association transparente, qui protège les éléphants sans encourager les balades, spectacles ou contacts forcés.</p></div>
+			<button class="outline-button" type="button" data-open-quiz>Trouver ma façon d’aider</button>
+		</section>
 	</main>
-	<footer><span>Les Géants de Terre · Pour que les éléphants gardent leur place dans le monde.</span><span>Un soutien responsable respecte les animaux et les communautés locales.</span></footer>
+	<footer><span>Terre de Géants · Observer avec respect, protéger ensemble.</span><span>Les éléphants sauvages ont besoin d’habitats sûrs et de liberté.</span></footer>
 
 	<div class="overlay" id="quiz-overlay" role="dialog" aria-modal="true" aria-labelledby="quiz-title">
 		<section class="dialog">
 			<button class="dialog-close" type="button" aria-label="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
 			<div class="quiz-view">
-				<div class="section-overline">Votre boussole de conservation</div>
-				<h2 id="quiz-title">Quelle cause vous ressemble ?</h2>
-				<p class="dialog-intro">Répondez à quelques questions pour découvrir des pistes de soutien symbolique. Ce résultat n’est pas une collecte ni une affiliation à un sanctuaire particulier.</p>
+				<div class="section-overline">Votre engagement, à votre mesure</div>
+				<h2 id="quiz-title">Quel monde souhaitez-vous protéger ?</h2>
+				<p class="dialog-intro">Quelques réponses pour orienter votre découverte vers les habitats et les actions de conservation qui vous parlent.</p>
 				<form id="quiz-form">
-					<fieldset class="form-field"><legend>Quel paysage vous appelle ?</legend><div class="option-row"><label class="option"><input type="radio" name="region" value="afrique" checked><span>Savane africaine</span></label><label class="option"><input type="radio" name="region" value="foret"><span>Forêt tropicale</span></label><label class="option"><input type="radio" name="region" value="asie"><span>Asie du Sud</span></label></div></fieldset>
-					<fieldset class="form-field"><legend>Quelle action vous touche le plus ?</legend><div class="option-row"><label class="option"><input type="radio" name="cause" value="habitat" checked><span>Protéger les habitats</span></label><label class="option"><input type="radio" name="cause" value="soins"><span>Soins et sanctuaires</span></label><label class="option"><input type="radio" name="cause" value="coexistence"><span>Coexistence locale</span></label></div></fieldset>
-					<label class="form-field"><span class="form-label">Contribution symbolique envisagée</span><select name="budget"><option value="small">Un geste ponctuel</option><option value="medium" selected>Un petit soutien régulier</option><option value="large">Un soutien plus important</option></select></label>
-					<button class="primary-button" type="submit">Voir ma piste de soutien <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+					<fieldset class="form-field"><legend>Quel paysage vous attire ?</legend><div class="option-row">
+						<label class="option"><input type="radio" name="region" value="afrique" checked><span>Afrique</span></label>
+						<label class="option"><input type="radio" name="region" value="asie"><span>Asie</span></label>
+						<label class="option"><input type="radio" name="region" value="any"><span>Les deux</span></label>
+					</div></fieldset>
+					<fieldset class="form-field"><legend>Quelle action vous touche le plus ?</legend><div class="option-row">
+						<label class="option"><input type="radio" name="cause" value="habitat" checked><span>Protéger l’habitat</span></label>
+						<label class="option"><input type="radio" name="cause" value="coexist"><span>Vivre ensemble</span></label>
+						<label class="option"><input type="radio" name="cause" value="care"><span>Soins et refuges</span></label>
+					</div></fieldset>
+					<fieldset class="form-field"><legend>Comment aimeriez-vous participer ?</legend><div class="option-row">
+						<label class="option"><input type="radio" name="involvement" value="learn" checked><span>Découvrir et apprendre</span></label>
+						<label class="option"><input type="radio" name="involvement" value="monthly"><span>Parrainer régulièrement</span></label>
+						<label class="option"><input type="radio" name="involvement" value="share"><span>Sensibiliser autour de moi</span></label>
+					</div></fieldset>
+					<button class="primary-button" type="submit">Voir des pistes d’engagement <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
 				</form>
 				<div class="match-results" id="match-results" aria-live="polite"></div>
 			</div>
@@ -194,28 +228,33 @@
 
 	<script>
 		const photoIds = [
-			"1564760055775-d63b17a55c44", "1557050543-4d5f4e07ef46", "1561731216-c3a4d99437d5", "1505148230895-d9aee9c5d6cb",
-			"1564760055775-d63b17a55c44", "1557050543-4d5f4e07ef46", "1561731216-c3a4d99437d5", "1505148230895-d9aee9c5d6cb",
-			"1564760055775-d63b17a55c44", "1557050543-4d5f4e07ef46", "1561731216-c3a4d99437d5", "1505148230895-d9aee9c5d6cb",
-			"1557050543-4d5f4e07ef46", "1564760055775-d63b17a55c44", "1505148230895-d9aee9c5d6cb", "1561731216-c3a4d99437d5"
+			"1564760055775-d63b17a55c44", "1551316679-9c6ae9dec224", "1561731216-c3a4d99437d5", "1549366021-9f761d450615",
+			"1564760055775-d63b17a55c44", "1516026672322-bc52d61a55d5", "1551316679-9c6ae9dec224", "1561731216-c3a4d99437d5",
+			"1549366021-9f761d450615", "1564760055775-d63b17a55c44", "1516026672322-bc52d61a55d5", "1551316679-9c6ae9dec224",
+			"1561731216-c3a4d99437d5", "1549366021-9f761d450615", "1564760055775-d63b17a55c44", "1516026672322-bc52d61a55d5",
+			"1551316679-9c6ae9dec224", "1561731216-c3a4d99437d5", "1549366021-9f761d450615", "1564760055775-d63b17a55c44"
 		];
 		const profiles = [
-			{ name:"Éléphant de savane", species:"Loxodonta africana", region:"Afrique australe & orientale", habitat:"Savane", tags:["Espèce vivante","Grandes plaines"], about:"Le plus grand animal terrestre. Il vit en groupes familiaux et parcourt de vastes paysages de savane, de bois clair et de brousse.", program:"Corridors & coexistence", focus:"habitat", place:"afrique", details:"Les corridors écologiques permettent aux troupeaux de rejoindre eau et nourriture en limitant les conflits. Des projets sérieux associent suivi scientifique et communautés locales." },
-			{ name:"Éléphant de forêt", species:"Loxodonta cyclotis", region:"Bassin du Congo", habitat:"Forêt", tags:["Espèce vivante","Forêt tropicale"], about:"Plus petit et plus discret que son cousin de savane, il joue un rôle essentiel dans la dispersion des graines des forêts d’Afrique centrale.", program:"Forêts & suivi", focus:"habitat", place:"foret", details:"La protection des forêts et la lutte contre le braconnage sont cruciales. Les éléphants de forêt sont classés en danger critique d’extinction." },
-			{ name:"Éléphant d’Asie", species:"Elephas maximus", region:"Asie du Sud & du Sud-Est", habitat:"Asie", tags:["Espèce vivante","Forêts & prairies"], about:"Espèce asiatique aux oreilles plus petites que celles des éléphants africains. Ses paysages vont des prairies aux forêts tropicales.", program:"Coexistence & habitat", focus:"coexistence", place:"asie", details:"La fragmentation des habitats rapproche parfois éléphants et villages. La prévention des conflits et les passages protégés peuvent aider humains et animaux." },
-			{ name:"Éléphant de Bornéo", species:"Elephas maximus borneensis", region:"Bornéo", habitat:"Forêt", tags:["Population asiatique","Forêt insulaire"], about:"Population insulaire de l’éléphant d’Asie, vivant dans les forêts du nord-est de Bornéo. Son habitat est menacé par la fragmentation.", program:"Forêt connectée", focus:"habitat", place:"foret", details:"Maintenir des corridors forestiers continus aide cette petite population à circuler. Soutenir des partenaires locaux et vérifier les résultats publiés reste essentiel." },
-			{ name:"Éléphant de Sumatra", species:"Elephas maximus sumatranus", region:"Sumatra, Indonésie", habitat:"Asie", tags:["Population asiatique","Habitat menacé"], about:"Une population de l’éléphant d’Asie confrontée à la perte et à la fragmentation de la forêt tropicale de Sumatra.", program:"Paysages forestiers", focus:"habitat", place:"asie", details:"Les efforts de conservation incluent restauration forestière, prévention des conflits et protection de zones vitales. L’éléphant de Sumatra est en danger critique." },
-			{ name:"Éléphant du Sri Lanka", species:"Elephas maximus maximus", region:"Sri Lanka", habitat:"Asie", tags:["Population asiatique","Coexistence"], about:"Les éléphants partagent l’île avec de nombreuses communautés. La coexistence demande des solutions locales et durables.", program:"Voisinage sans conflit", focus:"coexistence", place:"asie", details:"Les mesures de coexistence adaptées au contexte local peuvent protéger les personnes et les éléphants. Éviter les solutions simplistes est important." },
-			{ name:"Éléphant d’Inde", species:"Elephas maximus indicus", region:"Inde & sous-continent", habitat:"Asie", tags:["Population asiatique","Corridors"], about:"Dans des paysages habités et variés, ses déplacements dépendent de corridors qui relient des habitats de plus en plus fragmentés.", program:"Passages sécurisés", focus:"coexistence", place:"asie", details:"Les corridors de déplacement, la prévention des risques et le travail avec les communautés sont complémentaires pour réduire les rencontres dangereuses." },
-			{ name:"Troupeaux d’Amboseli", species:"Éléphant de savane · population locale", region:"Kenya, écosystème Amboseli", habitat:"Savane", tags:["Suivi scientifique","Communautés"], about:"Une région emblématique où la recherche de long terme documente les familles d’éléphants et leurs déplacements.", program:"Science de terrain", focus:"soins", place:"afrique", details:"Les suivis scientifiques de longue durée contribuent à comprendre les besoins des éléphants et à éclairer les décisions de conservation." },
-			{ name:"Éléphants du delta", species:"Éléphant de savane · delta de l’Okavango", region:"Botswana", habitat:"Savane", tags:["Zones humides","Eau"], about:"Dans les paysages saisonniers du delta, l’eau et les migrations façonnent la vie des éléphants et de nombreuses autres espèces.", program:"Rivières vivantes", focus:"habitat", place:"afrique", details:"Préserver les écosystèmes d’eau douce, les plaines inondables et les chemins migratoires profite à toute la biodiversité." },
-			{ name:"Éléphants du Tarangire", species:"Éléphant de savane · écosystème local", region:"Tanzanie", habitat:"Savane", tags:["Migrations","Paysage partagé"], about:"Les troupeaux suivent des routes saisonnières à travers un paysage partagé avec les communautés et le bétail.", program:"Routes de migration", focus:"coexistence", place:"afrique", details:"La concertation territoriale aide à conserver les voies de déplacement et à limiter les tensions liées aux ressources." },
-			{ name:"Forêt de Dzanga-Sangha", species:"Éléphant de forêt", region:"République centrafricaine", habitat:"Forêt", tags:["Bassin du Congo","Biodiversité"], about:"Un paysage forestier riche où la protection des éléphants est liée à celle de nombreuses espèces et des moyens de subsistance locaux.", program:"Forêt & biodiversité", focus:"habitat", place:"foret", details:"Les initiatives durables conjuguent protection des habitats, recherche et collaboration avec les habitants de la région." },
-			{ name:"Éléphants du Laos", species:"Éléphant d’Asie", region:"Laos", habitat:"Asie", tags:["Population asiatique","Forêts"], about:"Une population fragile dépendante des forêts et des liens entre habitats. Les initiatives locales sont essentielles.", program:"Habitats forestiers", focus:"habitat", place:"asie", details:"La protection de l’habitat et des pratiques respectueuses du bien-être animal doivent primer sur les activités de divertissement avec les éléphants." },
-			{ name:"Éléphants du Népal", species:"Éléphant d’Asie", region:"Népal, plaine du Teraï", habitat:"Asie", tags:["Paysage partagé","Coexistence"], about:"Dans le Teraï, mosaïque de forêts et de terres agricoles, la coexistence repose sur des approches de terrain adaptées.", program:"Communautés & sécurité", focus:"coexistence", place:"asie", details:"Les projets efficaces sont construits avec les personnes concernées et évaluent les bénéfices pour les communautés comme pour les animaux." },
-			{ name:"Éléphants du Kenya", species:"Éléphant de savane", region:"Kenya", habitat:"Protection", tags:["Anti-braconnage","Veille"], about:"La protection demande une veille attentive, des équipes formées et un travail de fond avec celles et ceux qui vivent près des habitats.", program:"Veille & protection", focus:"soins", place:"afrique", details:"Choisissez des organismes transparents sur leurs méthodes, leurs partenaires locaux, l’utilisation des dons et l’impact documenté." },
-			{ name:"Éléphants du Gabon", species:"Éléphant de forêt", region:"Gabon, forêts équatoriales", habitat:"Forêt", tags:["Forêt équatoriale","Écosystème"], about:"Les éléphants de forêt contribuent à la santé des forêts équatoriales en dispersant des graines sur de grandes distances.", program:"Écosystème forestier", focus:"habitat", place:"foret", details:"Protéger les forêts à grande échelle soutient aussi de nombreuses espèces végétales et animales qui partagent ces milieux." },
-			{ name:"Éléphants du Cambodge", species:"Éléphant d’Asie", region:"Cambodge", habitat:"Asie", tags:["Forêts","Bien-être"], about:"Des éléphants d’Asie vivent dans des espaces naturels sous pression. La conservation passe par l’habitat et le bien-être.", program:"Forêt & bien-être", focus:"soins", place:"asie", details:"Un sanctuaire responsable ne propose pas de promenades, spectacles ni contacts forcés. Il respecte les distances et les comportements naturels." }
+			{ species:"Éléphant de savane d’Afrique", region:"Afrique", habitat:"Savane", type:"Afrique", energy:3, calm:1, conservation:"Corridors sauvages", tags:["Savane","Troupeaux"], about:"Le plus grand animal terrestre vit dans les savanes et les forêts claires d’Afrique. Ses déplacements et son rôle de jardinier façonnent tout l’écosystème." },
+			{ species:"Éléphant d’Asie", region:"Asie", habitat:"Forêt", type:"Asie", energy:2, calm:2, conservation:"Forêts protégées", tags:["Forêt","Asie"], about:"Plus petit que son cousin africain, il habite des paysages variés d’Asie. La protection des forêts et des passages entre habitats est essentielle." },
+			{ species:"Éléphant de forêt d’Afrique", region:"Afrique", habitat:"Forêt", type:"Afrique", energy:2, calm:2, conservation:"Forêts équatoriales", tags:["Forêt dense","Afrique"], about:"Discret et adapté aux forêts denses du bassin du Congo, il contribue à la dispersion des graines et à la santé de la forêt tropicale." },
+			{ species:"Éléphant de savane d’Afrique", region:"Afrique", habitat:"Savane", type:"Afrique", energy:3, calm:1, conservation:"Coexistence locale", tags:["Savane","Corridors"], about:"Les troupeaux parcourent de vastes territoires. Préserver les corridors naturels aide les éléphants et les communautés à partager le paysage." },
+			{ species:"Éléphant d’Asie", region:"Asie", habitat:"Forêt", type:"Asie", energy:2, calm:2, conservation:"Protection des troupeaux", tags:["Asie","Famille"], about:"Les groupes familiaux sont souvent guidés par des femelles expérimentées. La sauvegarde des lieux de vie protège les générations futures." },
+			{ species:"Éléphant de forêt d’Afrique", region:"Afrique", habitat:"Forêt", type:"Afrique", energy:2, calm:2, conservation:"Écosystèmes forestiers", tags:["Bassin du Congo","Forêt"], about:"Espèce menacée, l’éléphant de forêt fait face au braconnage et à la fragmentation de son habitat. Les réserves et les équipes locales jouent un rôle clé." },
+			{ species:"Éléphant de savane d’Afrique", region:"Afrique", habitat:"Savane", type:"Afrique", energy:3, calm:1, conservation:"Cohabitation", tags:["Écosystème","Savane"], about:"En se nourrissant et en se déplaçant, il transforme le paysage. Des solutions locales peuvent réduire les conflits entre humains et éléphants." },
+			{ species:"Éléphant d’Asie", region:"Asie", habitat:"Prairie", type:"Asie", energy:2, calm:2, conservation:"Paysages partagés", tags:["Asie","Prairies"], about:"On le trouve dans des prairies, des brousses et des forêts. Garder ces milieux connectés est un défi important pour sa conservation." },
+			{ species:"Éléphant de forêt d’Afrique", region:"Afrique", habitat:"Forêt", type:"Afrique", energy:2, calm:2, conservation:"Protection contre le braconnage", tags:["Forêt dense","Espèce menacée"], about:"Ses populations ont fortement décliné. Les programmes de conservation associent surveillance, protection des forêts et soutien aux communautés." },
+			{ species:"Éléphant de savane d’Afrique", region:"Afrique", habitat:"Savane", type:"Afrique", energy:3, calm:1, conservation:"Points d’eau et corridors", tags:["Eau","Migration"], about:"Les saisons guident les grands déplacements des troupeaux. L’accès à l’eau et aux routes migratoires devient crucial dans un climat changeant." },
+			{ species:"Éléphant d’Asie", region:"Asie", habitat:"Forêt", type:"Asie", energy:2, calm:2, conservation:"Sanctuaires éthiques", tags:["Asie","Bien-être"], about:"Les sanctuaires responsables privilégient l’observation à distance, les soins adaptés et la liberté de mouvement, sans spectacle ni contact forcé." },
+			{ species:"Éléphant de savane d’Afrique", region:"Afrique", habitat:"Savane", type:"Afrique", energy:3, calm:1, conservation:"Gardiens de la nature", tags:["Communautés","Savane"], about:"Les équipes locales connaissent intimement les territoires. Leur travail de suivi et de prévention est une composante essentielle de la protection." },
+			{ species:"Éléphant de forêt d’Afrique", region:"Afrique", habitat:"Forêt", type:"Afrique", energy:2, calm:2, conservation:"Forêt vivante", tags:["Graines","Forêt"], about:"En transportant des graines sur de longues distances, il participe au renouvellement des forêts tropicales et au stockage naturel du carbone." },
+			{ species:"Éléphant d’Asie", region:"Asie", habitat:"Prairie", type:"Asie", energy:2, calm:2, conservation:"Continuité des habitats", tags:["Corridors","Asie"], about:"La fragmentation des milieux isole les populations. Des corridors protégés permettent aux éléphants de se déplacer plus sûrement." },
+			{ species:"Éléphant de savane d’Afrique", region:"Afrique", habitat:"Savane", type:"Afrique", energy:3, calm:1, conservation:"Suivi scientifique", tags:["Recherche","Savane"], about:"Le suivi des populations éclaire les décisions de conservation. Les recherches éthiques s’appuient sur des observations respectueuses des animaux." },
+			{ species:"Éléphant d’Asie", region:"Asie", habitat:"Forêt", type:"Asie", energy:2, calm:2, conservation:"Avenir des forêts", tags:["Forêt","Protection"], about:"Protéger les habitats en Asie demande de concilier nature, agriculture et besoins des communautés vivant près des éléphants." },
+			{ species:"Éléphant de forêt d’Afrique", region:"Afrique", habitat:"Forêt", type:"Afrique", energy:2, calm:2, conservation:"Rangers et réserves", tags:["Rangers","Biodiversité"], about:"Les réserves bien gérées et les équipes de terrain contribuent à protéger cet ingénieur écologique et les nombreuses espèces qui partagent sa forêt." },
+			{ species:"Éléphant de savane d’Afrique", region:"Afrique", habitat:"Savane", type:"Afrique", energy:3, calm:1, conservation:"Cohabitation apaisée", tags:["Communautés","Coexistence"], about:"Des alertes précoces, des aménagements et le dialogue local peuvent limiter les rencontres dangereuses entre cultures et troupeaux." },
+			{ species:"Éléphant d’Asie", region:"Asie", habitat:"Forêt", type:"Asie", energy:2, calm:2, conservation:"Sauvetage et soins", tags:["Refuge","Bien-être"], about:"Certains éléphants secourus vivent dans des refuges spécialisés. Un soutien utile finance des soins de qualité et un environnement sans exploitation." },
+			{ species:"Éléphant de savane d’Afrique", region:"Afrique", habitat:"Savane", type:"Afrique", energy:3, calm:1, conservation:"Paysages sauvages", tags:["Biodiversité","Savane"], about:"Préserver de vastes espaces permet aux troupeaux, aux prédateurs et à toute la vie des savanes de continuer à coexister." }
 		].map((profile, index) => ({ ...profile, id:index, image:`https://images.unsplash.com/photo-${photoIds[index]}?auto=format&fit=crop&w=720&q=82`, imageLarge:`https://images.unsplash.com/photo-${photoIds[index]}?auto=format&fit=crop&w=1100&q=85` }));
 
 		const grid = document.querySelector("#elephant-grid");
@@ -225,30 +264,39 @@
 		const quizView = document.querySelector(".quiz-view");
 		const detailView = document.querySelector("#detail-view");
 		let favorites = new Set();
-		try { favorites = new Set(JSON.parse(localStorage.getItem("geants-terre-favorites") || "[]")); } catch { localStorage.removeItem("geants-terre-favorites"); }
+		try { favorites = new Set(JSON.parse(localStorage.getItem("terre-geants-favorites") || "[]")); } catch { localStorage.removeItem("terre-geants-favorites"); }
 		let activeFilter = "Tous";
 		let favoritesOnly = false;
+
 		const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (char) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[char]));
 
 		function matchesFilter(profile) {
 			const query = searchInput.value.trim().toLocaleLowerCase("fr");
-			const searchable = [profile.name, profile.species, profile.region, profile.habitat, profile.about, profile.program, ...profile.tags].join(" ").toLocaleLowerCase("fr");
+			const searchable = [profile.species, profile.region, profile.habitat, profile.conservation, profile.about, ...profile.tags].join(" ").toLocaleLowerCase("fr");
 			const queryMatch = !query || searchable.includes(query);
-			const filterMatch = activeFilter === "Tous" || profile.habitat === activeFilter || (activeFilter === "Protection" && profile.focus === "soins");
+			const filterMatch = activeFilter === "Tous" || profile.region === activeFilter || profile.habitat === activeFilter;
 			return queryMatch && filterMatch && (!favoritesOnly || favorites.has(profile.id));
 		}
 
 		function renderProfiles() {
-			const visible = profiles.filter(matchesFilter);
-			grid.innerHTML = visible.map((profile, index) => {
-				const photoSize = ["photo-tall","photo-medium","photo-short"][index % 3];
+			const visibleProfiles = profiles.filter(matchesFilter);
+			grid.innerHTML = visibleProfiles.map((profile, index) => {
+				const photoSize = ["photo-tall", "photo-medium", "photo-short"][index % 3];
 				const isFavorite = favorites.has(profile.id);
-				return `<article class="elephant-card"><div class="photo-wrap"><img class="elephant-photo ${photoSize}" src="${profile.image}" alt="Éléphant dans un habitat naturel, profil ${escapeHtml(profile.name)}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=720&q=80'"><span class="habitat-label">${escapeHtml(profile.habitat)} · ${escapeHtml(profile.region)}</span><button class="heart-button ${isFavorite ? "is-favorite" : ""}" type="button" data-favorite="${profile.id}" aria-label="${isFavorite ? "Retirer" : "Ajouter"} ${escapeHtml(profile.name)} ${isFavorite ? "des" : "aux"} favoris" aria-pressed="${isFavorite}"><svg viewBox="0 0 24 24"><path d="M20.8 8.8c0 5.2-8.8 10-8.8 10s-8.8-4.8-8.8-10A4.5 4.5 0 0 1 12 6.4a4.5 4.5 0 0 1 8.8 2.4Z"/></svg></button></div><div class="card-info"><div class="card-title-row"><h3 class="card-title">${escapeHtml(profile.name)}</h3><span class="card-region">${escapeHtml(profile.species)}</span></div><p class="card-summary">${escapeHtml(profile.about)}</p><div class="card-meta">${profile.tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div><div class="card-bottom"><span class="program-label">Piste : ${escapeHtml(profile.program)}</span><button class="detail-button" type="button" data-detail="${profile.id}">En savoir plus ↗</button></div></div></article>`;
+				return `<article class="elephant-card">
+					<div class="photo-wrap"><img class="elephant-photo ${photoSize}" src="${profile.image}" alt="Éléphant dans son habitat, portrait de l’espèce ${escapeHtml(profile.species)}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=720&q=80'"><span class="place-label">${escapeHtml(profile.habitat)} · ${escapeHtml(profile.region)}</span>
+						<button class="heart-button ${isFavorite ? "is-favorite" : ""}" type="button" data-favorite="${profile.id}" aria-label="${isFavorite ? "Retirer" : "Ajouter"} ce portrait ${isFavorite ? "des" : "aux"} favoris" aria-pressed="${isFavorite}"><svg viewBox="0 0 24 24"><path d="M20.8 8.8c0 5.2-8.8 10-8.8 10s-8.8-4.8-8.8-10A4.5 4.5 0 0 1 12 6.4a4.5 4.5 0 0 1 8.8 2.4Z"/></svg></button>
+					</div>
+					<div class="elephant-info"><div class="elephant-title-row"><h3 class="elephant-title">${escapeHtml(profile.species)}</h3><span class="elephant-type">${escapeHtml(profile.type)}</span></div>
+						<p class="elephant-summary">${escapeHtml(profile.about)}</p><div class="tags">${profile.tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
+						<div class="card-bottom"><span class="region-label">À soutenir : ${escapeHtml(profile.conservation)}</span><button class="detail-button" type="button" data-detail="${profile.id}">En savoir plus ↗</button></div>
+					</div>
+				</article>`;
 			}).join("");
-			document.querySelector("#result-count").textContent = `${visible.length} ${visible.length === 1 ? "profil" : "profils"}`;
+			document.querySelector("#result-count").textContent = `${visibleProfiles.length} ${visibleProfiles.length === 1 ? "portrait" : "portraits"}`;
 			document.querySelector("#favorite-count").textContent = favorites.size;
-			emptyState.style.display = visible.length ? "none" : "block";
-			grid.style.display = visible.length ? "block" : "none";
+			emptyState.style.display = visibleProfiles.length ? "none" : "block";
+			grid.style.display = visibleProfiles.length ? "block" : "none";
 		}
 
 		function openOverlay(view = "quiz") {
@@ -257,6 +305,7 @@
 			quizView.style.display = view === "quiz" ? "block" : "none";
 			detailView.classList.toggle("is-visible", view === "detail");
 		}
+
 		function closeOverlay() {
 			overlay.classList.remove("is-open");
 			document.body.style.overflow = "";
@@ -288,12 +337,12 @@
 			if (favoriteButton) {
 				const id = Number(favoriteButton.dataset.favorite);
 				favorites.has(id) ? favorites.delete(id) : favorites.add(id);
-				try { localStorage.setItem("geants-terre-favorites", JSON.stringify([...favorites])); } catch { /* Les favoris restent disponibles pendant cette visite. */ }
+				try { localStorage.setItem("terre-geants-favorites", JSON.stringify([...favorites])); } catch { /* Les favoris restent actifs pendant cette visite. */ }
 				renderProfiles();
 			}
 			if (detailButton) {
 				const profile = profiles[Number(detailButton.dataset.detail)];
-				detailView.innerHTML = `<div class="section-overline">${escapeHtml(profile.region)} · ${escapeHtml(profile.habitat)}</div><img class="detail-photo" src="${profile.imageLarge}" alt="Éléphant dans son habitat : ${escapeHtml(profile.name)}"><h2>${escapeHtml(profile.name)}</h2><p class="detail-copy"><strong>${escapeHtml(profile.species)}</strong><br>${escapeHtml(profile.details)}</p><div class="detail-stats"><div class="detail-stat"><strong>${escapeHtml(profile.habitat)}</strong><span>Habitat associé</span></div><div class="detail-stat"><strong>${escapeHtml(profile.program)}</strong><span>Piste de soutien</span></div><div class="detail-stat"><strong>${escapeHtml(profile.focus)}</strong><span>Enjeu principal</span></div></div><p class="detail-copy">Les noms de lieux et de programmes présentés sont informatifs : cette page n’est affiliée à aucun organisme et ne collecte aucun don. Avant tout soutien, vérifiez les références, la transparence financière et les pratiques de bien-être animal du partenaire.</p>`;
+				detailView.innerHTML = `<div class="section-overline">${escapeHtml(profile.region)} · ${escapeHtml(profile.habitat)}</div><img class="detail-photo" src="${profile.imageLarge}" alt="Éléphant dans son habitat naturel"><h2>${escapeHtml(profile.species)}</h2><p class="detail-copy">${escapeHtml(profile.about)}</p><div class="detail-stats"><div class="detail-stat"><strong>${escapeHtml(profile.conservation)}</strong><span>Piste de conservation</span></div><div class="detail-stat"><strong>${escapeHtml(profile.habitat)}</strong><span>Habitat</span></div><div class="detail-stat"><strong>${escapeHtml(profile.region)}</strong><span>Région</span></div></div><p class="detail-copy">Il s’agit d’un portrait d’espèce et d’un exemple d’enjeu de conservation, pas d’un animal disponible à l’adoption. Pour parrainer, vérifiez la transparence de l’organisme et privilégiez la protection des habitats, le travail avec les communautés et l’observation sans contact forcé.</p>`;
 				openOverlay("detail");
 			}
 		});
@@ -303,18 +352,26 @@
 			const answers = new FormData(event.currentTarget);
 			const region = answers.get("region");
 			const cause = answers.get("cause");
-			const budget = answers.get("budget");
-			const scored = profiles.map((profile) => {
-				let score = profile.place === region ? 3 : 0;
-				if (profile.focus === cause) score += 4;
-				if (budget === "small" && profile.focus === "habitat") score += 1;
-				if (budget === "medium" && profile.focus !== "soins") score += 1;
-				if (budget === "large") score += 1;
-				return { profile, score };
-			}).sort((a,b) => b.score - a.score);
-			const selected = scored.filter((item) => item.score >= scored[0].score - 2).slice(0,3);
+			const involvement = answers.get("involvement");
+			const projects = [
+				{ name:"Corridors et coexistence en Afrique", region:"afrique", cause:"coexist", desc:"Prévenir les conflits et garder les paysages connectés." },
+				{ name:"Forêts et éléphants d’Asie", region:"asie", cause:"habitat", desc:"Préserver les habitats et les passages entre forêts." },
+				{ name:"Refuges éthiques et soins", region:"asie", cause:"care", desc:"Soutenir des soins sans spectacles ni contact forcé." },
+				{ name:"Forêts du bassin du Congo", region:"afrique", cause:"habitat", desc:"Protéger une forêt essentielle aux éléphants de forêt." },
+				{ name:"Communautés et faune sauvage", region:"afrique", cause:"coexist", desc:"Faire avancer des solutions locales de cohabitation." },
+				{ name:"Éducation et protection des géants", region:"any", cause:"care", desc:"Apprendre, sensibiliser et soutenir les équipes de terrain." }
+			];
+			const ranked = projects.map((project) => {
+				let score = 0;
+				if (region === "any" || project.region === region || project.region === "any") score += 2;
+				if (project.cause === cause) score += 2;
+				if (involvement === "monthly") score += project.name.includes("Refuges") || project.name.includes("Forêts") ? 2 : 1;
+				if (involvement === "learn") score += project.name.includes("Éducation") ? 2 : 1;
+				if (involvement === "share") score += project.name.includes("Communautés") || project.name.includes("Éducation") ? 2 : 1;
+				return { project, score };
+			}).sort((a, b) => b.score - a.score).slice(0, 3);
 			const results = document.querySelector("#match-results");
-			results.innerHTML = `<h3>Des pistes pour votre engagement</h3>${selected.map(({profile,score}) => `<div class="match-item"><div><strong>${escapeHtml(profile.program)}</strong><small>${escapeHtml(profile.name)} · ${escapeHtml(profile.region)}</small></div><span class="match-score">${Math.max(68,Math.min(96,72 + score * 4))}% d’affinité</span></div>`).join("")}<p class="match-disclaimer">Pour transformer cette piste en geste concret, recherchez un organisme reconnu qui publie ses comptes et ses résultats. L’adoption est symbolique : aucun éléphant ne sera déplacé ou détenu.</p>`;
+			results.innerHTML = `<h3>Des pistes à explorer</h3>${ranked.map(({ project }) => `<div class="match-item"><div><strong>${escapeHtml(project.name)}</strong><small>${escapeHtml(project.desc)}</small></div><span class="match-score">À découvrir</span></div>`).join("")}<p class="detail-copy" style="margin:11px 0 0">Avant tout don ou parrainage, vérifiez les rapports, les partenaires locaux et les pratiques de bien-être animal de l’organisme.</p>`;
 			results.classList.add("is-visible");
 		});
 
