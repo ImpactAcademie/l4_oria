@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#f6f5ef">
+	<meta name="description" content="Découvrez des chiens et trouvez le compagnon qui correspond à votre quotidien.">
+	<title>Compagnon — Trouvez votre chien</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--ink: #202b27;
+			--muted: #747d75;
+			--paper: #f6f5ef;
+			--white: #fffefa;
+			--green: #31594b;
+			--green-light: #e6eee8;
+			--coral: #d46a4f;
+			--line: #e5e5dc;
+			--serif: "Playfair Display", Georgia, serif;
+			--sans: "DM Sans", sans-serif;
+		}
+		* { box-sizing: border-box; }
+		body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); }
+		button, input, select { font: inherit; }
+		button { color: inherit; }
+		.topbar { height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 0 5.5vw; border-bottom: 1px solid var(--line); background: rgba(255,254,250,.84); }
+		.brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); font-size: 19px; font-weight: 700; letter-spacing: 0; text-decoration: none; }
+		.brand-mark { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; background: var(--green); color: white; }
+		.brand-mark svg { width: 20px; height: 20px; }
+		.top-note { color: var(--muted); font-size: 13px; }
+		.top-action, .primary-button, .secondary-button { border: 0; border-radius: 999px; cursor: pointer; font-weight: 700; transition: transform .18s ease, background .18s ease; }
+		.top-action { padding: 12px 18px; background: var(--green); color: white; font-size: 13px; }
+		.top-action:hover, .primary-button:hover { background: #244638; transform: translateY(-1px); }
+		.hero { position: relative; min-height: 440px; overflow: hidden; display: grid; align-items: center; padding: 60px 8vw; background: #e6e9df; }
+		.hero::before { content: ""; position: absolute; inset: 0 0 0 42%; background: linear-gradient(90deg, #e6e9df 0%, rgba(230,233,223,.88) 14%, rgba(230,233,223,.08) 55%), url("https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1800&q=85") center 44% / cover; }
+		.hero::after { content: ""; position: absolute; width: 330px; height: 330px; border: 1px solid rgba(49,89,75,.14); border-radius: 50%; left: -200px; bottom: -215px; }
+		.hero-content { position: relative; z-index: 1; max-width: 560px; animation: rise .7s ease both; }
+		.eyebrow { display: flex; align-items: center; gap: 9px; color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+		.eyebrow::before { content: ""; width: 24px; height: 2px; background: var(--coral); }
+		h1, h2, h3, p { margin-top: 0; }
+		h1 { max-width: 540px; margin: 17px 0 14px; font-family: var(--serif); font-size: clamp(42px, 5.5vw, 72px); line-height: 1.04; font-weight: 600; }
+		.hero-copy { max-width: 420px; margin: 0 0 25px; color: #505b53; font-size: 15px; line-height: 1.7; }
+		.primary-button { display: inline-flex; align-items: center; gap: 10px; padding: 14px 20px; background: var(--green); color: white; font-size: 13px; }
+		.primary-button svg { width: 16px; height: 16px; }
+		.hero-footnote { display: inline-block; margin-left: 13px; color: #616b63; font-size: 12px; }
+		.main { width: min(1320px, 89%); margin: 0 auto; padding: 48px 0 72px; }
+		.section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 23px; }
+		.section-kicker { margin-bottom: 7px; color: var(--coral); font-size: 11px; font-weight: 700; letter-spacing: 1.3px; text-transform: uppercase; }
+		h2 { margin-bottom: 0; font-family: var(--serif); font-size: 34px; font-weight: 600; }
+		.result-count { color: var(--muted); font-size: 13px; }
+		.toolbar { display: flex; align-items: center; gap: 10px; margin-bottom: 25px; }
+		.search-wrap { position: relative; flex: 1 1 260px; max-width: 360px; }
+		.search-wrap svg { position: absolute; top: 50%; left: 14px; width: 17px; height: 17px; color: #818981; transform: translateY(-50%); }
+		.search { width: 100%; height: 44px; padding: 0 15px 0 40px; border: 1px solid var(--line); border-radius: 7px; outline: none; background: var(--white); }
+		.search:focus, select:focus { border-color: #71917f; box-shadow: 0 0 0 3px rgba(49,89,75,.1); }
+		.filters { display: flex; flex: 1; gap: 7px; overflow-x: auto; scrollbar-width: none; }
+		.filters::-webkit-scrollbar { display: none; }
+		.filter-button { flex: 0 0 auto; padding: 10px 14px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: #59635b; cursor: pointer; font-size: 12px; font-weight: 600; }
+		.filter-button[aria-pressed="true"] { border-color: var(--green); background: var(--green); color: white; }
+		.favorites-toggle { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 7px; padding: 10px 13px; border: 1px solid var(--line); border-radius: 999px; background: transparent; cursor: pointer; font-size: 12px; font-weight: 600; }
+		.favorites-toggle svg { width: 15px; height: 15px; color: var(--coral); }
+		.dog-grid { columns: 4 220px; column-gap: 17px; }
+		.dog-card { break-inside: avoid; overflow: hidden; margin: 0 0 18px; border-radius: 7px; background: var(--white); animation: rise .4s ease both; }
+		.photo-wrap { position: relative; overflow: hidden; background: #dfe3db; }
+		.dog-photo { width: 100%; display: block; object-fit: cover; transition: transform .45s ease; }
+		.dog-card:hover .dog-photo { transform: scale(1.035); }
+		.photo-tall { height: 285px; } .photo-medium { height: 225px; } .photo-short { height: 190px; }
+		.heart-button { position: absolute; top: 11px; right: 11px; width: 36px; height: 36px; display: grid; place-items: center; border: 0; border-radius: 50%; background: rgba(255,254,250,.94); cursor: pointer; }
+		.heart-button svg { width: 18px; height: 18px; fill: transparent; stroke: var(--ink); stroke-width: 1.8; }
+		.heart-button.is-favorite svg { fill: var(--coral); stroke: var(--coral); }
+		.dog-info { padding: 14px 15px 15px; }
+		.dog-title-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+		.dog-title { margin: 0; font-family: var(--serif); font-size: 20px; font-weight: 600; }
+		.dog-origin { color: var(--muted); font-size: 10px; white-space: nowrap; }
+		.dog-summary { margin: 7px 0 11px; color: #677168; font-size: 12px; line-height: 1.5; }
+		.dog-meta { display: flex; flex-wrap: wrap; gap: 6px; }
+		.tag { padding: 5px 8px; border-radius: 4px; background: var(--green-light); color: #365b4b; font-size: 10px; font-weight: 600; }
+		.card-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 13px; padding-top: 11px; border-top: 1px solid #efeee8; }
+		.size-label { color: var(--muted); font-size: 11px; }
+		.detail-button { padding: 0; border: 0; background: none; color: var(--green); cursor: pointer; font-size: 11px; font-weight: 700; }
+		.empty-state { display: none; padding: 60px 15px; text-align: center; color: var(--muted); }
+		.empty-state h3 { margin-bottom: 6px; color: var(--ink); font-family: var(--serif); font-size: 24px; }
+		.adoption-note { display: flex; align-items: center; justify-content: space-between; gap: 25px; margin-top: 64px; padding: 28px 32px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+		.adoption-note h2 { font-size: 27px; }
+		.adoption-note p { max-width: 600px; margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+		.secondary-button { flex: 0 0 auto; padding: 13px 18px; border: 1px solid var(--green); background: transparent; color: var(--green); font-size: 12px; }
+		.secondary-button:hover { background: var(--green-light); }
+		footer { display: flex; justify-content: space-between; gap: 20px; padding: 25px 5.5vw; color: var(--muted); font-size: 11px; }
+		.overlay { position: fixed; z-index: 10; inset: 0; display: none; align-items: center; justify-content: center; padding: 20px; background: rgba(22,34,28,.55); backdrop-filter: blur(3px); }
+		.overlay.is-open { display: flex; }
+		.dialog { position: relative; width: min(540px, 100%); max-height: min(90vh, 760px); overflow: auto; padding: 32px; border-radius: 8px; background: var(--white); animation: rise .25s ease both; }
+		.dialog-close { position: absolute; top: 15px; right: 15px; width: 35px; height: 35px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: transparent; cursor: pointer; }
+		.dialog-close svg { width: 17px; height: 17px; }
+		.dialog h2 { max-width: 410px; margin: 8px 30px 8px 0; font-size: 31px; }
+		.dialog-intro { margin-bottom: 24px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+		.form-field { margin: 0 0 18px; padding: 0; border: 0; }
+		.form-field legend, .form-label { display: block; margin-bottom: 9px; font-size: 12px; font-weight: 700; }
+		.option-row { display: flex; flex-wrap: wrap; gap: 7px; }
+		.option { position: relative; }
+		.option input { position: absolute; opacity: 0; }
+		.option span { display: block; padding: 9px 11px; border: 1px solid var(--line); border-radius: 5px; color: #5c665f; cursor: pointer; font-size: 11px; }
+		.option input:checked + span { border-color: var(--green); background: var(--green-light); color: var(--green); font-weight: 700; }
+		.option input:focus-visible + span { outline: 2px solid var(--coral); outline-offset: 2px; }
+		select { width: 100%; height: 43px; padding: 0 11px; border: 1px solid var(--line); border-radius: 5px; outline: none; background: white; }
+		.dialog .primary-button { width: 100%; justify-content: center; margin-top: 4px; }
+		.match-results { display: none; margin-top: 23px; padding-top: 18px; border-top: 1px solid var(--line); }
+		.match-results.is-visible { display: block; }
+		.match-results h3 { margin-bottom: 12px; font-family: var(--serif); font-size: 21px; }
+		.match-item { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 11px 0; border-top: 1px solid #efeee8; }
+		.match-item strong { display: block; font-family: var(--serif); font-size: 17px; }
+		.match-item small { color: var(--muted); font-size: 11px; }
+		.match-score { color: var(--green); font-size: 12px; font-weight: 700; }
+		.detail-view { display: none; }
+		.detail-view.is-visible { display: block; }
+		.detail-photo { width: 100%; height: 220px; margin: 8px 0 18px; border-radius: 5px; object-fit: cover; }
+		.detail-copy { color: #616b63; font-size: 13px; line-height: 1.7; }
+		.detail-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 18px 0; }
+		.detail-stat { padding: 12px 8px; background: var(--paper); text-align: center; }
+		.detail-stat strong { display: block; margin-bottom: 4px; color: var(--green); font-size: 13px; }
+		.detail-stat span { color: var(--muted); font-size: 10px; }
+		@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+		@media (max-width: 900px) { .dog-grid { columns: 3 200px; } .toolbar { flex-wrap: wrap; } .filters { order: 3; flex-basis: 100%; } .favorites-toggle { margin-left: auto; } }
+		@media (max-width: 600px) {
+			.topbar { height: 64px; padding: 0 18px; } .top-note { display: none; } .top-action { padding: 10px 13px; font-size: 11px; }
+			.hero { min-height: 535px; align-items: start; padding: 47px 23px; }
+			.hero::before { inset: 42% 0 0; background: linear-gradient(180deg, #e6e9df 0%, rgba(230,233,223,.18) 44%), url("https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1000&q=80") center / cover; }
+			h1 { font-size: 46px; } .hero-copy { max-width: 350px; font-size: 14px; } .hero-footnote { display: block; margin: 11px 0 0; }
+			.main { width: calc(100% - 34px); padding-top: 36px; } .section-head { align-items: start; flex-direction: column; gap: 7px; } h2 { font-size: 30px; }
+			.toolbar { gap: 8px; } .search-wrap { flex-basis: 100%; max-width: none; } .favorites-toggle { margin-left: 0; }
+			.dog-grid { columns: 2 145px; column-gap: 10px; } .dog-card { margin-bottom: 11px; } .photo-tall { height: 220px; } .photo-medium { height: 178px; } .photo-short { height: 152px; }
+			.dog-info { padding: 11px; } .dog-title { font-size: 17px; } .dog-origin { display: none; } .dog-summary { font-size: 11px; }
+			.adoption-note { align-items: start; flex-direction: column; margin-top: 43px; padding: 23px 0; } footer { padding: 22px 18px; }
+			.dialog { padding: 27px 21px; } .dialog h2 { font-size: 27px; }
+		}
+		@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+	</style>
+</head>
+<body>
+	<header class="topbar">
+		<a class="brand" href="./" aria-label="Compagnon, accueil">
+			<span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7.5 11.5c-1.7 0-3-1.4-3-3.2S5.7 5 7.2 5c1.6 0 2.6 1.5 2.6 3.2M16.5 11.5c1.7 0 3-1.4 3-3.2S18.3 5 16.8 5c-1.6 0-2.6 1.5-2.6 3.2M5.2 15.6c0-1.6 1.4-2.8 3.1-2.8.9 0 1.7.4 2.3 1.1.4.4.7.6 1.4.6s1-.2 1.4-.6c.6-.7 1.4-1.1 2.3-1.1 1.7 0 3.1 1.2 3.1 2.8 0 2.1-2.5 3.5-6.8 3.5s-6.8-1.4-6.8-3.5Z"/></svg></span>
+			Compagnon
+		</a>
+		<span class="top-note">Le bon chien, pour la bonne vie.</span>
+		<button class="top-action" type="button" data-open-quiz>Quel chien me correspond ?</button>
+	</header>
+
+	<section class="hero" aria-labelledby="hero-title">
+		<div class="hero-content">
+			<div class="eyebrow">Une belle histoire commence ici</div>
+			<h1 id="hero-title">Votre prochain meilleur ami.</h1>
+			<p class="hero-copy">Chaque chien a sa façon d’aimer. Découvrez des races, leurs tempéraments et trouvez le compagnon qui s’accordera vraiment à votre quotidien.</p>
+			<button class="primary-button" type="button" id="discover-button">Trouver mon compagnon <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+			<span class="hero-footnote">24 portraits pour commencer votre recherche</span>
+		</div>
+	</section>
+
+	<main class="main" id="gallery">
+		<div class="section-head">
+			<div><div class="section-kicker">Rencontres à quatre pattes</div><h2>Leur personnalité avant leur pedigree.</h2></div>
+			<span class="result-count" id="result-count" aria-live="polite"></span>
+		</div>
+		<div class="toolbar" aria-label="Filtres des chiens">
+			<label class="search-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg><input class="search" id="search" type="search" placeholder="Race, taille, tempérament..." aria-label="Rechercher un chien"></label>
+			<div class="filters" id="filters">
+				<button class="filter-button" type="button" data-filter="Tous" aria-pressed="true">Tous</button>
+				<button class="filter-button" type="button" data-filter="Petit" aria-pressed="false">Petit format</button>
+				<button class="filter-button" type="button" data-filter="Moyen" aria-pressed="false">Format moyen</button>
+				<button class="filter-button" type="button" data-filter="Grand" aria-pressed="false">Grand format</button>
+				<button class="filter-button" type="button" data-filter="Calme" aria-pressed="false">Plutôt calme</button>
+				<button class="filter-button" type="button" data-filter="Sportif" aria-pressed="false">Sportif</button>
+			</div>
+			<button class="favorites-toggle" type="button" id="favorites-toggle" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 8.8c0 5.2-8.8 10-8.8 10s-8.8-4.8-8.8-10A4.5 4.5 0 0 1 12 6.4a4.5 4.5 0 0 1 8.8 2.4Z"/></svg>Favoris <span id="favorite-count">0</span></button>
+		</div>
+		<div class="dog-grid" id="dog-grid" aria-live="polite"></div>
+		<div class="empty-state" id="empty-state"><h3>Aucun chien ne correspond à cette recherche.</h3><p>Essayez un autre filtre ou un mot-clé plus général.</p></div>
+
+		<section class="adoption-note">
+			<div><div class="section-kicker">Et après le coup de cœur ?</div><h2>L’adoption, une rencontre qui se prépare.</h2><p>La race donne des indices, mais chaque chien est unique. Prenez le temps de rencontrer votre futur compagnon et échangez avec un refuge ou une association près de chez vous.</p></div>
+			<button class="secondary-button" type="button" data-open-quiz>Faire le test de compatibilité</button>
+		</section>
+	</main>
+	<footer><span>Compagnon · Pour les belles histoires, à quatre pattes.</span><span>Choisir avec le cœur, accueillir avec soin.</span></footer>
+
+	<div class="overlay" id="quiz-overlay" role="dialog" aria-modal="true" aria-labelledby="quiz-title">
+		<section class="dialog">
+			<button class="dialog-close" type="button" aria-label="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+			<div class="quiz-view">
+				<div class="eyebrow">Quelques questions pour vous guider</div>
+				<h2 id="quiz-title">Quel chien vivrait bien à vos côtés ?</h2>
+				<p class="dialog-intro">Il n’y a pas de réponse parfaite. Votre quotidien nous aide simplement à suggérer des profils à rencontrer.</p>
+				<form id="quiz-form">
+					<fieldset class="form-field"><legend>Votre logement</legend><div class="option-row">
+						<label class="option"><input type="radio" name="home" value="appartement" checked><span>Appartement</span></label>
+						<label class="option"><input type="radio" name="home" value="maison"><span>Maison</span></label>
+					</div></fieldset>
+					<fieldset class="form-field"><legend>Votre rythme au quotidien</legend><div class="option-row">
+						<label class="option"><input type="radio" name="activity" value="calme"><span>Plutôt tranquille</span></label>
+						<label class="option"><input type="radio" name="activity" value="modere" checked><span>Un peu de tout</span></label>
+						<label class="option"><input type="radio" name="activity" value="actif"><span>Très actif</span></label>
+					</div></fieldset>
+					<fieldset class="form-field"><legend>Votre expérience avec les chiens</legend><div class="option-row">
+						<label class="option"><input type="radio" name="experience" value="debutant" checked><span>Je débute</span></label>
+						<label class="option"><input type="radio" name="experience" value="aime"><span>J’en ai déjà eu</span></label>
+					</div></fieldset>
+					<label class="form-field"><span class="form-label">Combien de temps seul en journée ?</span><select name="alone"><option value="short">Moins de 3 heures</option><option value="medium" selected>3 à 6 heures</option><option value="long">Plus de 6 heures</option></select></label>
+					<button class="primary-button" type="submit">Voir mes suggestions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+				</form>
+				<div class="match-results" id="match-results" aria-live="polite"></div>
+			</div>
+			<div class="detail-view" id="detail-view"></div>
+		</section>
+	</div>
+
+	<script>
+		const photoIds = [
+			"1552053831-71594a27632d", "1543466835-00a7907e9de1", "1583337130417-3346a1be7dee", "1548199973-03cce0bbc87b",
+			"1558788353-f76d92427f16", "1517849845537-4d257902454a", "1537151608828-ea2b11777ee8", "1530281700549-e82e7bf110d6",
+			"1544568100-847a948585b9", "1541599540903-216a46ca1dc0", "1534361960057-19889db9621e", "1548199973-03cce0bbc87b",
+			"1552053831-71594a27632d", "1517849845537-4d257902454a", "1537151608828-ea2b11777ee8", "1583337130417-3346a1be7dee",
+			"1530281700549-e82e7bf110d6", "1543466835-00a7907e9de1", "1544568100-847a948585b9", "1558788353-f76d92427f16",
+			"1534361960057-19889db9621e", "1541599540903-216a46ca1dc0", "1517849845537-4d257902454a", "1537151608828-ea2b11777ee8"
+		];
+		const dogs = [
+			{ name:"Golden Retriever", origin:"Écosse", size:"Grand", energy:3, calm:2, first:2, alone:1, tags:["Doux","Famille"], about:"Sociable, patient et très attaché aux humains. Il aime participer à la vie de la maison et a besoin de belles sorties quotidiennes." },
+			{ name:"Bouledogue français", origin:"France", size:"Petit", energy:1, calm:3, first:3, alone:1, tags:["Câlin","Urbain"], about:"Petit clown de compagnie, affectueux et souvent à l’aise en ville. Il supporte mal les fortes chaleurs et préfère les activités modérées." },
+			{ name:"Berger australien", origin:"États-Unis", size:"Moyen", energy:3, calm:1, first:1, alone:0, tags:["Vif","Apprentissage"], about:"Intelligent et enthousiaste, il s’épanouit avec des activités physiques et mentales régulières. Il aime avoir une mission à accomplir." },
+			{ name:"Beagle", origin:"Angleterre", size:"Moyen", energy:3, calm:1, first:2, alone:1, tags:["Joueur","Curieux"], about:"Chien joyeux et sociable, guidé par son flair. Il apprécie les promenades riches en découvertes et la compagnie de sa famille." },
+			{ name:"Labrador Retriever", origin:"Canada", size:"Grand", energy:3, calm:2, first:3, alone:1, tags:["Sociable","Famille"], about:"Généreux et adaptable, il aime apprendre et partager les activités. Son énergie et son appétit demandent un cadre régulier." },
+			{ name:"Caniche", origin:"France", size:"Petit", energy:2, calm:2, first:3, alone:1, tags:["Malin","Proche"], about:"Très intelligent et attentif à ses humains, le caniche existe en plusieurs tailles. Son poil demande un entretien régulier." },
+			{ name:"Shiba Inu", origin:"Japon", size:"Moyen", energy:2, calm:2, first:1, alone:2, tags:["Indépendant","Alerte"], about:"Élégant et indépendant, il apprécie une relation respectueuse et cohérente. La socialisation et le rappel demandent un accompagnement attentif." },
+			{ name:"Cavalier King Charles", origin:"Angleterre", size:"Petit", energy:1, calm:3, first:3, alone:0, tags:["Tendre","Compagnie"], about:"Chien doux et très proche de sa famille, heureux dans un quotidien paisible avec de la présence et de petites sorties régulières." },
+			{ name:"Cocker Spaniel", origin:"Angleterre", size:"Moyen", energy:2, calm:2, first:2, alone:1, tags:["Joyeux","Affectueux"], about:"Enjoué et sensible, il aime les balades et la vie en famille. Ses oreilles et son pelage méritent un entretien suivi." },
+			{ name:"Teckel", origin:"Allemagne", size:"Petit", energy:2, calm:2, first:2, alone:1, tags:["Curieux","Caractère"], about:"Petit chien courageux au grand caractère. Les activités adaptées et la vigilance concernant son dos sont importantes." },
+			{ name:"Border Collie", origin:"Écosse", size:"Moyen", energy:3, calm:1, first:1, alone:0, tags:["Très actif","Travail"], about:"Un partenaire exceptionnel pour les personnes disponibles et actives. Il a besoin d’apprendre, bouger et réfléchir chaque jour." },
+			{ name:"Bichon Frisé", origin:"France", size:"Petit", energy:2, calm:2, first:3, alone:0, tags:["Joyeux","Sociable"], about:"Petit compagnon gai et sociable, qui aime la présence et les jeux. Son pelage bouclé nécessite un toilettage régulier." },
+			{ name:"Berger allemand", origin:"Allemagne", size:"Grand", energy:3, calm:2, first:1, alone:1, tags:["Loyal","Actif"], about:"Loyal et polyvalent, il a besoin d’éducation positive, d’activités et d’une relation construite avec constance." },
+			{ name:"Chihuahua", origin:"Mexique", size:"Petit", energy:2, calm:2, first:2, alone:1, tags:["Petit format","Vigilant"], about:"Un grand tempérament dans un petit corps. Il a besoin de douceur, de repères et d’être protégé des manipulations brusques." },
+			{ name:"Husky sibérien", origin:"Sibérie", size:"Grand", energy:3, calm:1, first:1, alone:1, tags:["Endurant","Sociable"], about:"Sociable et endurant, il est fait pour les longues sorties et la vie active. Son instinct d’exploration demande de la vigilance." },
+			{ name:"Spitz nain", origin:"Allemagne", size:"Petit", energy:2, calm:2, first:2, alone:1, tags:["Vif","Alerte"], about:"Petit chien expressif et plein d’entrain. Il apprécie les jeux, l’éducation bienveillante et un entretien fréquent de son pelage." },
+			{ name:"Berger des Shetland", origin:"Écosse", size:"Moyen", energy:2, calm:2, first:2, alone:0, tags:["Sensible","Apprend vite"], about:"Sensible et attentif, il aime apprendre et rester près des siens. Une approche douce l’aide à prendre confiance." },
+			{ name:"Carlin", origin:"Chine", size:"Petit", energy:1, calm:3, first:3, alone:1, tags:["Drôle","Compagnie"], about:"Attachant et paisible, le carlin est très proche de ses humains. Sa santé respiratoire demande une attention particulière." },
+			{ name:"Berger blanc suisse", origin:"Suisse", size:"Grand", energy:2, calm:2, first:2, alone:1, tags:["Doux","Loyal"], about:"Équilibré et proche de sa famille, il aime les promenades et les activités partagées. La solitude s’apprend progressivement." },
+			{ name:"Jack Russell Terrier", origin:"Angleterre", size:"Petit", energy:3, calm:1, first:2, alone:1, tags:["Énergique","Intrépide"], about:"Petit sportif audacieux qui a besoin de se dépenser et d’explorer. Il convient mieux à un foyer prêt à canaliser son énergie." },
+			{ name:"Dalmatien", origin:"Croatie", size:"Grand", energy:3, calm:1, first:1, alone:1, tags:["Endurant","Joueur"], about:"Athlétique et affectueux, il accompagne volontiers les personnes actives. Il apprécie les sorties longues et les activités régulières." },
+			{ name:"Basset Hound", origin:"France", size:"Moyen", energy:1, calm:3, first:2, alone:1, tags:["Paisible","Flair"], about:"Compagnon calme et attachant, il adore suivre les odeurs à son rythme. Il a besoin de promenades et d’une attention à son poids." },
+			{ name:"Schnauzer nain", origin:"Allemagne", size:"Petit", energy:2, calm:2, first:2, alone:1, tags:["Éveillé","Fidèle"], about:"Éveillé et complice, il aime les sorties, les jeux de réflexion et les routines partagées. Son poil demande un entretien régulier." },
+			{ name:"Terre-Neuve", origin:"Canada", size:"Grand", energy:2, calm:3, first:2, alone:1, tags:["Doux géant","Patient"], about:"Grand chien réputé doux et patient, qui préfère les activités modérées. Il faut prévoir beaucoup d’espace et de soin du pelage." }
+		].map((dog, index) => ({ ...dog, id:index, image:`https://images.unsplash.com/photo-${photoIds[index]}?auto=format&fit=crop&w=720&q=82`, imageLarge:`https://images.unsplash.com/photo-${photoIds[index]}?auto=format&fit=crop&w=1100&q=85` }));
+
+		const grid = document.querySelector("#dog-grid");
+		const searchInput = document.querySelector("#search");
+		const emptyState = document.querySelector("#empty-state");
+		const overlay = document.querySelector("#quiz-overlay");
+		const quizView = document.querySelector(".quiz-view");
+		const detailView = document.querySelector("#detail-view");
+		const favorites = new Set(JSON.parse(localStorage.getItem("compagnon-favorites") || "[]"));
+		let activeFilter = "Tous";
+		let favoritesOnly = false;
+
+		const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (char) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[char]));
+
+		function matchesFilter(dog) {
+			const query = searchInput.value.trim().toLocaleLowerCase("fr");
+			const searchable = [dog.name, dog.origin, dog.size, dog.about, ...dog.tags].join(" ").toLocaleLowerCase("fr");
+			const queryMatch = !query || searchable.includes(query);
+			const filterMatch = activeFilter === "Tous" || dog.size === activeFilter || (activeFilter === "Calme" && dog.calm === 3) || (activeFilter === "Sportif" && dog.energy === 3);
+			return queryMatch && filterMatch && (!favoritesOnly || favorites.has(dog.id));
+		}
+
+		function renderDogs() {
+			const visibleDogs = dogs.filter(matchesFilter);
+			grid.innerHTML = visibleDogs.map((dog, index) => {
+				const photoSize = ["photo-tall", "photo-medium", "photo-short"][index % 3];
+				const isFavorite = favorites.has(dog.id);
+				return `<article class="dog-card">
+					<div class="photo-wrap"><img class="dog-photo ${photoSize}" src="${dog.image}" alt="Portrait d’un chien de race ${escapeHtml(dog.name)}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=720&q=80'">
+						<button class="heart-button ${isFavorite ? "is-favorite" : ""}" type="button" data-favorite="${dog.id}" aria-label="${isFavorite ? "Retirer" : "Ajouter"} ${escapeHtml(dog.name)} ${isFavorite ? "des" : "aux"} favoris" aria-pressed="${isFavorite}"><svg viewBox="0 0 24 24"><path d="M20.8 8.8c0 5.2-8.8 10-8.8 10s-8.8-4.8-8.8-10A4.5 4.5 0 0 1 12 6.4a4.5 4.5 0 0 1 8.8 2.4Z"/></svg></button>
+					</div>
+					<div class="dog-info"><div class="dog-title-row"><h3 class="dog-title">${escapeHtml(dog.name)}</h3><span class="dog-origin">${escapeHtml(dog.origin)}</span></div>
+						<p class="dog-summary">${escapeHtml(dog.about)}</p><div class="dog-meta">${dog.tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
+						<div class="card-bottom"><span class="size-label">Format ${escapeHtml(dog.size.toLowerCase())}</span><button class="detail-button" type="button" data-detail="${dog.id}">Découvrir le profil →</button></div>
+					</div>
+				</article>`;
+			}).join("");
+			document.querySelector("#result-count").textContent = `${visibleDogs.length} ${visibleDogs.length > 1 ? "portraits" : "portrait"}`;
+			document.querySelector("#favorite-count").textContent = favorites.size;
+			emptyState.style.display = visibleDogs.length ? "none" : "block";
+			grid.style.display = visibleDogs.length ? "block" : "none";
+		}
+
+		function openOverlay(view = "quiz") {
+			overlay.classList.add("is-open");
+			document.body.style.overflow = "hidden";
+			quizView.style.display = view === "quiz" ? "block" : "none";
+			detailView.classList.toggle("is-visible", view === "detail");
+			if (view === "quiz") document.querySelector("#quiz-title").focus?.();
+		}
+
+		function closeOverlay() {
+			overlay.classList.remove("is-open");
+			document.body.style.overflow = "";
+			document.querySelector("#match-results").classList.remove("is-visible");
+			detailView.classList.remove("is-visible");
+			quizView.style.display = "block";
+		}
+
+		document.querySelectorAll("[data-open-quiz]").forEach((button) => button.addEventListener("click", () => openOverlay("quiz")));
+		document.querySelector(".dialog-close").addEventListener("click", closeOverlay);
+		overlay.addEventListener("click", (event) => { if (event.target === overlay) closeOverlay(); });
+		document.addEventListener("keydown", (event) => { if (event.key === "Escape" && overlay.classList.contains("is-open")) closeOverlay(); });
+		document.querySelector("#discover-button").addEventListener("click", () => document.querySelector("#gallery").scrollIntoView({ behavior:"smooth" }));
+		searchInput.addEventListener("input", renderDogs);
+		document.querySelector("#filters").addEventListener("click", (event) => {
+			const button = event.target.closest("[data-filter]");
+			if (!button) return;
+			activeFilter = button.dataset.filter;
+			document.querySelectorAll(".filter-button").forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+			renderDogs();
+		});
+		document.querySelector("#favorites-toggle").addEventListener("click", (event) => {
+			favoritesOnly = !favoritesOnly;
+			event.currentTarget.setAttribute("aria-pressed", String(favoritesOnly));
+			renderDogs();
+		});
+		grid.addEventListener("click", (event) => {
+			const favoriteButton = event.target.closest("[data-favorite]");
+			const detailButton = event.target.closest("[data-detail]");
+			if (favoriteButton) {
+				const id = Number(favoriteButton.dataset.favorite);
+				favorites.has(id) ? favorites.delete(id) : favorites.add(id);
+				localStorage.setItem("compagnon-favorites", JSON.stringify([...favorites]));
+				renderDogs();
+			}
+			if (detailButton) {
+				const dog = dogs[Number(detailButton.dataset.detail)];
+				detailView.innerHTML = `<div class="eyebrow">${escapeHtml(dog.origin)} · Format ${escapeHtml(dog.size.toLowerCase())}</div><img class="detail-photo" src="${dog.imageLarge}" alt="Portrait de ${escapeHtml(dog.name)}"><h2>${escapeHtml(dog.name)}</h2><p class="detail-copy">${escapeHtml(dog.about)}</p><div class="detail-stats"><div class="detail-stat"><strong>${dog.energy}/3</strong><span>Besoin d’activité</span></div><div class="detail-stat"><strong>${dog.calm}/3</strong><span>Rythme paisible</span></div><div class="detail-stat"><strong>${dog.first}/3</strong><span>Pour débuter</span></div></div><p class="detail-copy">Un profil de race ne remplace pas une rencontre : l’âge, l’histoire et la personnalité de chaque chien comptent beaucoup. Demandez conseil à une association ou à un refuge avant toute adoption.</p>`;
+				openOverlay("detail");
+			}
+		});
+
+		document.querySelector("#quiz-form").addEventListener("submit", (event) => {
+			event.preventDefault();
+			const answers = new FormData(event.currentTarget);
+			const activity = answers.get("activity");
+			const home = answers.get("home");
+			const experience = answers.get("experience");
+			const alone = answers.get("alone");
+			const scored = dogs.map((dog) => {
+				let score = 0;
+				if (activity === "calme") score += dog.energy === 1 ? 3 : dog.energy === 2 ? 1 : -1;
+				if (activity === "modere") score += dog.energy === 2 ? 3 : 1;
+				if (activity === "actif") score += dog.energy === 3 ? 3 : dog.energy === 2 ? 1 : -1;
+				if (home === "appartement") score += dog.size === "Petit" ? 2 : dog.energy === 3 ? -1 : 1;
+				if (home === "maison") score += dog.size === "Grand" ? 2 : 1;
+				if (experience === "debutant") score += dog.first;
+				if (experience === "aime") score += dog.first === 1 ? 1 : 2;
+				if (alone === "short") score += dog.alone === 0 ? 2 : 1;
+				if (alone === "medium") score += dog.alone === 1 ? 2 : 1;
+				if (alone === "long") score += dog.alone === 2 ? 2 : -1;
+				return { dog, score };
+			}).sort((a, b) => b.score - a.score).slice(0, 3);
+			const results = document.querySelector("#match-results");
+			results.innerHTML = `<h3>Trois profils à découvrir</h3>${scored.map(({ dog, score }) => `<div class="match-item"><div><strong>${escapeHtml(dog.name)}</strong><small>${escapeHtml(dog.tags.join(" · "))}</small></div><span class="match-score">${Math.max(60, Math.min(98, 70 + score * 3))}% compatible</span></div>`).join("")}<p class="detail-copy" style="margin:12px 0 0">Ces suggestions sont indicatives. Chaque chien est différent : la rencontre et les conseils d’un refuge restent essentiels.</p>`;
+			results.classList.add("is-visible");
+		});
+
+		renderDogs();
+	</script>
+</body>
+</html>
