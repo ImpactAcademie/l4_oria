@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#281a32">
+	<meta name="description" content="Explorez les races de chats et trouvez un compagnon adapté à votre quotidien.">
+	<title>Les Chats de Minuit — Trouvez votre compagnon</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,600,20,1;9..144,700,20,1&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--plum: #281a32;
+			--plum-soft: #493451;
+			--mauve: #a783aa;
+			--lilac: #e9ddeb;
+			--paper: #f8f4f7;
+			--white: #fffdfd;
+			--ink: #302534;
+			--muted: #847886;
+			--lime: #d8ef70;
+			--line: #e9e0e9;
+			--serif: "Fraunces", Georgia, serif;
+			--sans: "DM Sans", sans-serif;
+		}
+		* { box-sizing: border-box; }
+		body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+		button, input, select { font: inherit; }
+		button { color: inherit; }
+		.topbar { position: relative; z-index: 2; display: flex; height: 74px; align-items: center; justify-content: space-between; gap: 20px; padding: 0 6vw; background: var(--plum); color: white; }
+		.brand { display: inline-flex; align-items: center; gap: 11px; font-size: 16px; font-weight: 700; }
+		.brand-icon { display: grid; width: 35px; height: 35px; place-items: center; border: 1px solid rgba(216,239,112,.65); border-radius: 50%; color: var(--lime); }
+		.brand-icon svg { width: 19px; height: 19px; }
+		.brand em { color: #d1b7d4; font-family: var(--serif); font-weight: 600; }
+		.top-label { color: #c7b8c9; font-size: 12px; }
+		.top-button, .primary-button, .outline-button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 0; border-radius: 999px; cursor: pointer; font-weight: 700; transition: transform .2s ease, background .2s ease; }
+		.top-button { padding: 11px 17px; background: var(--lime); color: var(--plum); font-size: 12px; }
+		.top-button:hover, .primary-button:hover { transform: translateY(-2px); background: #e6f88a; }
+		.hero { position: relative; min-height: 500px; overflow: hidden; padding: 65px 8vw 58px; background: var(--plum); color: white; }
+		.hero::before { position: absolute; inset: 0 0 0 38%; content: ""; background: linear-gradient(90deg, var(--plum) 0%, rgba(40,26,50,.96) 9%, rgba(40,26,50,.12) 62%), linear-gradient(0deg, rgba(40,26,50,.15), rgba(40,26,50,.15)), url("https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=1800&q=88") center 42% / cover; opacity: .94; }
+		.hero::after { position: absolute; right: 9%; bottom: -190px; width: 390px; height: 390px; border: 1px solid rgba(216,239,112,.22); border-radius: 50%; content: ""; }
+		.hero-content { position: relative; z-index: 1; max-width: 540px; animation: arrive .7s ease both; }
+		.kicker { display: flex; align-items: center; gap: 10px; color: var(--lime); font-size: 10px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; }
+		.kicker::before { width: 25px; height: 1px; background: currentColor; content: ""; }
+		h1, h2, h3, p { margin-top: 0; }
+		h1 { max-width: 520px; margin: 20px 0 15px; font-family: var(--serif); font-size: clamp(48px, 6.3vw, 78px); font-weight: 600; letter-spacing: 0; line-height: .99; }
+		h1 span { color: #d1b7d4; font-style: italic; }
+		.hero-copy { max-width: 410px; margin: 0 0 26px; color: #ded3e0; font-size: 14px; line-height: 1.8; }
+		.primary-button { padding: 14px 19px; background: var(--lime); color: var(--plum); font-size: 12px; }
+		.primary-button svg { width: 16px; height: 16px; }
+		.hero-caption { display: block; margin-top: 14px; color: #c3b4c6; font-size: 11px; }
+		.hero-stamp { position: absolute; right: 9%; bottom: 35px; z-index: 1; display: grid; width: 91px; height: 91px; place-items: center; border: 1px solid rgba(255,255,255,.7); border-radius: 50%; color: white; font-family: var(--serif); font-size: 13px; line-height: 1.15; text-align: center; transform: rotate(9deg); }
+		.hero-stamp span { display: block; color: var(--lime); font-family: var(--sans); font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+		.main { width: min(1320px, 89%); margin: 0 auto; padding: 54px 0 72px; }
+		.section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 24px; }
+		.section-overline { margin-bottom: 7px; color: #8d628e; font-size: 10px; font-weight: 700; letter-spacing: 1.7px; text-transform: uppercase; }
+		h2 { margin-bottom: 0; font-family: var(--serif); font-size: 35px; font-weight: 600; line-height: 1.1; }
+		.result-count { color: var(--muted); font-size: 12px; }
+		.toolbar { display: flex; align-items: center; gap: 9px; margin-bottom: 24px; }
+		.search-wrap { position: relative; flex: 1 1 260px; max-width: 350px; }
+		.search-wrap svg { position: absolute; top: 50%; left: 13px; width: 17px; height: 17px; color: #897b8b; transform: translateY(-50%); }
+		.search { width: 100%; height: 43px; padding: 0 13px 0 39px; border: 1px solid var(--line); border-radius: 6px; outline: none; background: var(--white); }
+		.search:focus, select:focus { border-color: var(--mauve); box-shadow: 0 0 0 3px rgba(167,131,170,.15); }
+		.filters { display: flex; flex: 1; gap: 7px; overflow-x: auto; scrollbar-width: none; }
+		.filters::-webkit-scrollbar { display: none; }
+		.filter-button { flex: 0 0 auto; padding: 9px 13px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: #6c6070; cursor: pointer; font-size: 11px; font-weight: 600; }
+		.filter-button[aria-pressed="true"] { border-color: var(--plum); background: var(--plum); color: white; }
+		.favorites-toggle { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 6px; padding: 9px 12px; border: 1px solid var(--line); border-radius: 999px; background: transparent; cursor: pointer; font-size: 11px; font-weight: 600; }
+		.favorites-toggle svg { width: 15px; height: 15px; color: #a65a8c; }
+		.cat-grid { columns: 4 215px; column-gap: 16px; }
+		.cat-card { overflow: hidden; break-inside: avoid; margin: 0 0 17px; border: 1px solid #eee7ef; border-radius: 6px; background: var(--white); animation: arrive .4s ease both; }
+		.photo-wrap { position: relative; overflow: hidden; background: #e7dfe8; }
+		.cat-photo { display: block; width: 100%; object-fit: cover; transition: transform .45s ease; }
+		.cat-card:hover .cat-photo { transform: scale(1.04); }
+		.photo-tall { height: 285px; } .photo-medium { height: 225px; } .photo-short { height: 185px; }
+		.temperament { position: absolute; bottom: 10px; left: 10px; padding: 7px 10px; border: 1px solid rgba(255,255,255,.4); border-radius: 99px; background: rgba(40,26,50,.73); color: white; font-size: 10px; backdrop-filter: blur(4px); }
+		.heart-button { position: absolute; top: 10px; right: 10px; display: grid; width: 35px; height: 35px; place-items: center; border: 0; border-radius: 50%; background: rgba(255,253,253,.94); cursor: pointer; }
+		.heart-button svg { width: 18px; height: 18px; fill: transparent; stroke: var(--plum); stroke-width: 1.8; }
+		.heart-button.is-favorite svg { fill: #af659c; stroke: #af659c; }
+		.cat-info { padding: 13px 14px 14px; }
+		.cat-title-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+		.cat-title { margin: 0; font-family: var(--serif); font-size: 19px; font-weight: 600; }
+		.cat-origin { color: var(--muted); font-size: 9px; white-space: nowrap; }
+		.cat-summary { margin: 7px 0 11px; color: #766d79; font-size: 11px; line-height: 1.55; }
+		.cat-meta { display: flex; flex-wrap: wrap; gap: 5px; }
+		.tag { padding: 5px 7px; border-radius: 3px; background: var(--lilac); color: #5f4562; font-size: 9px; font-weight: 600; }
+		.card-bottom { display: flex; align-items: center; justify-content: space-between; gap: 7px; margin-top: 12px; padding-top: 10px; border-top: 1px solid #f0eaf1; }
+		.size-label { color: var(--muted); font-size: 10px; }
+		.detail-button { padding: 0; border: 0; background: none; color: #754a78; cursor: pointer; font-size: 10px; font-weight: 700; }
+		.empty-state { display: none; padding: 55px 12px; color: var(--muted); text-align: center; }
+		.empty-state h3 { margin-bottom: 6px; color: var(--ink); font-family: var(--serif); font-size: 24px; }
+		.adoption-note { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 25px; overflow: hidden; margin-top: 56px; padding: 27px 30px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+		.adoption-note::after { position: absolute; right: 19%; bottom: -98px; width: 160px; height: 160px; border: 1px solid #dfcfe1; border-radius: 50%; content: ""; }
+		.adoption-note h2 { font-size: 27px; }
+		.adoption-note p { max-width: 610px; margin: 8px 0 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+		.outline-button { z-index: 1; flex: 0 0 auto; padding: 12px 17px; border: 1px solid #805f83; background: transparent; color: #634665; font-size: 11px; }
+		.outline-button:hover { background: var(--lilac); }
+		footer { display: flex; justify-content: space-between; gap: 18px; padding: 23px 6vw; background: var(--plum); color: #c7b8c9; font-size: 10px; }
+		.overlay { position: fixed; z-index: 10; inset: 0; display: none; align-items: center; justify-content: center; padding: 18px; background: rgba(24,14,29,.64); backdrop-filter: blur(4px); }
+		.overlay.is-open { display: flex; }
+		.dialog { position: relative; width: min(550px, 100%); max-height: min(90vh, 780px); overflow: auto; padding: 31px; border: 1px solid rgba(255,255,255,.5); border-radius: 8px; background: var(--white); animation: arrive .25s ease both; }
+		.dialog-close { position: absolute; top: 13px; right: 13px; display: grid; width: 35px; height: 35px; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: transparent; cursor: pointer; }
+		.dialog-close svg { width: 17px; height: 17px; }
+		.dialog h2 { max-width: 420px; margin: 8px 28px 8px 0; font-size: 31px; }
+		.dialog-intro { margin-bottom: 23px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+		.form-field { margin: 0 0 17px; padding: 0; border: 0; }
+		.form-field legend, .form-label { display: block; margin-bottom: 8px; font-size: 11px; font-weight: 700; }
+		.option-row { display: flex; flex-wrap: wrap; gap: 7px; }
+		.option { position: relative; }
+		.option input { position: absolute; opacity: 0; }
+		.option span { display: block; padding: 9px 11px; border: 1px solid var(--line); border-radius: 5px; color: #6c6070; cursor: pointer; font-size: 10px; }
+		.option input:checked + span { border-color: #805f83; background: var(--lilac); color: #593b5c; font-weight: 700; }
+		.option input:focus-visible + span { outline: 2px solid #a45d94; outline-offset: 2px; }
+		select { width: 100%; height: 42px; padding: 0 11px; border: 1px solid var(--line); border-radius: 5px; outline: none; background: white; }
+		.dialog .primary-button { width: 100%; margin-top: 3px; }
+		.match-results { display: none; margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--line); }
+		.match-results.is-visible { display: block; }
+		.match-results h3 { margin-bottom: 10px; font-family: var(--serif); font-size: 21px; }
+		.match-item { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 0; border-top: 1px solid #f0eaf1; }
+		.match-item strong { display: block; font-family: var(--serif); font-size: 16px; }
+		.match-item small { color: var(--muted); font-size: 10px; }
+		.match-score { color: #69476d; font-size: 11px; font-weight: 700; }
+		.detail-view { display: none; }
+		.detail-view.is-visible { display: block; }
+		.detail-photo { width: 100%; height: 225px; margin: 8px 0 16px; border-radius: 5px; object-fit: cover; }
+		.detail-copy { color: #706674; font-size: 12px; line-height: 1.75; }
+		.detail-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 17px 0; }
+		.detail-stat { padding: 12px 8px; background: #f4edf5; text-align: center; }
+		.detail-stat strong { display: block; margin-bottom: 4px; color: #69476d; font-size: 12px; }
+		.detail-stat span { color: var(--muted); font-size: 9px; }
+		@keyframes arrive { from { opacity: 0; transform: translateY(11px); } to { opacity: 1; transform: translateY(0); } }
+		@media (max-width: 900px) { .cat-grid { columns: 3 195px; } .toolbar { flex-wrap: wrap; } .filters { order: 3; flex-basis: 100%; } .favorites-toggle { margin-left: auto; } }
+		@media (max-width: 600px) {
+			.topbar { height: 64px; padding: 0 17px; } .top-label { display: none; } .top-button { padding: 10px 12px; font-size: 10px; }
+			.hero { min-height: 560px; padding: 44px 23px; } .hero::before { inset: 42% 0 0; background: linear-gradient(180deg, var(--plum) 0%, rgba(40,26,50,.2) 54%), url("https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=1000&q=82") center 40% / cover; }
+			h1 { font-size: 51px; } .hero-copy { max-width: 350px; font-size: 13px; } .hero-stamp { right: 18px; bottom: 18px; width: 76px; height: 76px; font-size: 11px; }
+			.main { width: calc(100% - 34px); padding-top: 39px; } .section-head { align-items: start; flex-direction: column; gap: 8px; } h2 { font-size: 30px; }
+			.toolbar { gap: 8px; } .search-wrap { flex-basis: 100%; max-width: none; } .favorites-toggle { margin-left: 0; }
+			.cat-grid { columns: 2 145px; column-gap: 10px; } .cat-card { margin-bottom: 11px; } .photo-tall { height: 220px; } .photo-medium { height: 175px; } .photo-short { height: 150px; }
+			.cat-info { padding: 10px; } .cat-title { font-size: 17px; } .cat-origin { display: none; } .cat-summary { font-size: 10px; }
+			.adoption-note { align-items: start; flex-direction: column; margin-top: 42px; padding: 22px 0; } .adoption-note h2 { font-size: 24px; } footer { flex-direction: column; padding: 20px 17px; }
+			.dialog { padding: 27px 20px; } .dialog h2 { font-size: 27px; }
+		}
+		@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+	</style>
+</head>
+<body>
+	<header class="topbar">
+		<div class="brand"><span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5.5 9.5 4 5l5 2 3-3 3 3 5-2-1.5 4.5c1.8 1.6 2.6 3.4 2.1 5.2-.7 2.5-3.9 4.3-8.6 4.3S4.1 17.2 3.4 14.7c-.5-1.8.3-3.6 2.1-5.2Z"/><path d="M9 13h.01M15 13h.01M9.5 16c1.6 1.1 3.4 1.1 5 0"/></svg></span><span>Les Chats <em>de Minuit</em></span></div>
+		<span class="top-label">Des moustaches, des caractères, des rencontres.</span>
+		<button class="top-button" type="button" data-open-quiz>Trouver mon chat <span aria-hidden="true">↗</span></button>
+	</header>
+
+	<section class="hero" aria-labelledby="hero-title">
+		<div class="hero-content">
+			<div class="kicker">Le guide des grandes rencontres</div>
+			<h1 id="hero-title">Un peu de <span>mystère.</span><br>Beaucoup d’amour.</h1>
+			<p class="hero-copy">Indépendant, bavard, majestueux ou petit pot de colle : chaque chat a son propre monde. Rencontrez-les et trouvez celui qui fera vibrer le vôtre.</p>
+			<button class="primary-button" type="button" data-open-quiz>Quel chat pour mon quotidien ? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+			<span class="hero-caption">Explorez 24 portraits et leurs petits secrets.</span>
+		</div>
+		<div class="hero-stamp" aria-hidden="true">Adopter<br>avec cœur<span>guide félin</span></div>
+	</section>
+
+	<main class="main">
+		<div class="section-head">
+			<div><div class="section-overline">Le cabinet de curiosités félines</div><h2>Des caractères à rencontrer.</h2></div>
+			<span class="result-count" id="result-count" aria-live="polite"></span>
+		</div>
+		<div class="toolbar" aria-label="Filtres des chats">
+			<label class="search-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg><input class="search" id="search" type="search" placeholder="Race, humeur, pelage..." aria-label="Rechercher un chat"></label>
+			<div class="filters" id="filters">
+				<button class="filter-button" type="button" data-filter="Tous" aria-pressed="true">Tous les chats</button>
+				<button class="filter-button" type="button" data-filter="Petit" aria-pressed="false">Petit gabarit</button>
+				<button class="filter-button" type="button" data-filter="Moyen" aria-pressed="false">Gabarit moyen</button>
+				<button class="filter-button" type="button" data-filter="Grand" aria-pressed="false">Grand gabarit</button>
+				<button class="filter-button" type="button" data-filter="Calme" aria-pressed="false">Tout doux</button>
+				<button class="filter-button" type="button" data-filter="Joueur" aria-pressed="false">Joueur</button>
+			</div>
+			<button class="favorites-toggle" type="button" id="favorites-toggle" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 8.8c0 5.2-8.8 10-8.8 10s-8.8-4.8-8.8-10A4.5 4.5 0 0 1 12 6.4a4.5 4.5 0 0 1 8.8 2.4Z"/></svg>Favoris <span id="favorite-count">0</span></button>
+		</div>
+		<div class="cat-grid" id="cat-grid" aria-live="polite"></div>
+		<div class="empty-state" id="empty-state"><h3>Pas de matou dans cette sélection.</h3><p>Essayez un autre filtre ou un nouveau mot-clé.</p></div>
+		<section class="adoption-note">
+			<div><div class="section-overline">La rencontre avant tout</div><h2>Une race, c’est une piste. Pas une promesse.</h2><p>Le tempérament dépend aussi de l’histoire et du vécu de chaque chat. En refuge, chatons, adultes et chats de gouttière attendent leur personne. Prenez le temps de rencontrer celui qui vous choisit aussi.</p></div>
+			<button class="outline-button" type="button" data-open-quiz>Faire mon portrait félin</button>
+		</section>
+	</main>
+	<footer><span>Les Chats de Minuit · Un foyer, neuf vies à partager.</span><span>Adoptez auprès d’un refuge ou d’une association.</span></footer>
+
+	<div class="overlay" id="quiz-overlay" role="dialog" aria-modal="true" aria-labelledby="quiz-title">
+		<section class="dialog">
+			<button class="dialog-close" type="button" aria-label="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+			<div class="quiz-view">
+				<div class="section-overline">Votre quotidien, version moustaches</div>
+				<h2 id="quiz-title">Qui ronronnerait chez vous ?</h2>
+				<p class="dialog-intro">Quelques repères pour vous proposer des tempéraments à découvrir. Chaque chat reste unique : la rencontre fera le vrai choix.</p>
+				<form id="quiz-form">
+					<fieldset class="form-field"><legend>Votre chez-vous</legend><div class="option-row">
+						<label class="option"><input type="radio" name="home" value="appartement" checked><span>Appartement</span></label>
+						<label class="option"><input type="radio" name="home" value="maison"><span>Maison</span></label>
+					</div></fieldset>
+					<fieldset class="form-field"><legend>L’ambiance que vous imaginez</legend><div class="option-row">
+						<label class="option"><input type="radio" name="activity" value="calme"><span>Moments tranquilles</span></label>
+						<label class="option"><input type="radio" name="activity" value="modere" checked><span>Un peu de tout</span></label>
+						<label class="option"><input type="radio" name="activity" value="actif"><span>Jeux et énergie</span></label>
+					</div></fieldset>
+					<fieldset class="form-field"><legend>Combien de temps le chat sera-t-il seul ?</legend><div class="option-row">
+						<label class="option"><input type="radio" name="alone" value="short"><span>Peu de temps</span></label>
+						<label class="option"><input type="radio" name="alone" value="medium" checked><span>Quelques heures</span></label>
+						<label class="option"><input type="radio" name="alone" value="long"><span>Souvent la journée</span></label>
+					</div></fieldset>
+					<fieldset class="form-field"><legend>Votre expérience avec les chats</legend><div class="option-row">
+						<label class="option"><input type="radio" name="experience" value="debutant" checked><span>Je débute</span></label>
+						<label class="option"><input type="radio" name="experience" value="aime"><span>J’en ai déjà eu</span></label>
+					</div></fieldset>
+					<button class="primary-button" type="submit">Découvrir mes affinités <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+				</form>
+				<div class="match-results" id="match-results" aria-live="polite"></div>
+			</div>
+			<div class="detail-view" id="detail-view"></div>
+		</section>
+	</div>
+
+	<script>
+		const photoIds = [
+			"1514888286974-6c03e2ca1dba", "1573865526739-10659fec78a5", "1533738363-b7f9aef128ce", "1518791841217-8f162f1e1131",
+			"1495360010541-f48722b34f7d", "1511044568932-338cba0ad803", "1543852786-1cf6624b9987", "1574158622682-e40e69881006",
+			"1548247416-ec66f4900b2e", "1571566882372-1598d88aba7e", "1513360371669-4adf3dd7dff8", "1495360010541-f48722b34f7d",
+			"1511044568932-338cba0ad803", "1543852786-1cf6624b9987", "1533738363-b7f9aef128ce", "1573865526739-10659fec78a5",
+			"1574158622682-e40e69881006", "1514888286974-6c03e2ca1dba", "1548247416-ec66f4900b2e", "1518791841217-8f162f1e1131",
+			"1571566882372-1598d88aba7e", "1513360371669-4adf3dd7dff8", "1511044568932-338cba0ad803", "1543852786-1cf6624b9987"
+		];
+		const cats = [
+			{ name:"Chat européen", origin:"Europe", size:"Moyen", energy:2, calm:2, social:2, alone:2, first:3, tags:["Attachant","Polyvalent"], about:"Le compagnon de bien des foyers : curieux, adaptable et plein de nuances. En refuge, chaque chat européen a son propre tempérament." },
+			{ name:"British Shorthair", origin:"Royaume-Uni", size:"Grand", energy:1, calm:3, social:2, alone:3, first:3, tags:["Paisible","Indépendant"], about:"D’un naturel posé et présent sans être envahissant, il apprécie son confort et les routines tranquilles." },
+			{ name:"Bengal", origin:"États-Unis", size:"Moyen", energy:3, calm:1, social:3, alone:1, first:1, tags:["Athlétique","Curieux"], about:"Vif et très joueur, il aime grimper, explorer et interagir. Son énergie demande un environnement stimulant." },
+			{ name:"Maine Coon", origin:"États-Unis", size:"Grand", energy:2, calm:2, social:3, alone:1, first:2, tags:["Sociable","Géant doux"], about:"Grand chat sociable et curieux, il aime participer à la vie du foyer. Prévoyez de l’espace et du brossage." },
+			{ name:"Ragdoll", origin:"États-Unis", size:"Grand", energy:1, calm:3, social:3, alone:0, first:3, tags:["Doux","Proche"], about:"Souvent calme et très proche de ses humains, il aime la présence et les moments partagés sans agitation." },
+			{ name:"Chartreux", origin:"France", size:"Moyen", energy:2, calm:3, social:2, alone:2, first:3, tags:["Serein","Observateur"], about:"Discret et doux, il apprécie les environnements paisibles. Il sait aussi se montrer joueur quand la confiance est là." },
+			{ name:"Siamois", origin:"Thaïlande", size:"Moyen", energy:3, calm:1, social:3, alone:0, first:2, tags:["Bavard","Complice"], about:"Expressif, actif et proche de sa famille, il aime communiquer. La compagnie compte beaucoup pour ce chat sociable." },
+			{ name:"Sacré de Birmanie", origin:"Birmanie", size:"Moyen", energy:2, calm:2, social:3, alone:1, first:3, tags:["Tendre","Joueur"], about:"Affectueux et équilibré, il aime être près de ses humains et partager des jeux comme des siestes." },
+			{ name:"Sphynx", origin:"Canada", size:"Moyen", energy:2, calm:2, social:3, alone:0, first:2, tags:["Chaleureux","Sociable"], about:"Très sociable et en quête de chaleur, au sens propre comme figuré. Sa peau demande des soins adaptés." },
+			{ name:"Persan", origin:"Iran", size:"Moyen", energy:1, calm:3, social:2, alone:2, first:2, tags:["Paisible","Casanière"], about:"Amateur de confort et de tranquillité, il aime les foyers calmes. Son pelage nécessite un brossage fréquent." },
+			{ name:"Abyssin", origin:"Éthiopie", size:"Moyen", energy:3, calm:1, social:2, alone:1, first:2, tags:["Explorateur","Vif"], about:"Agile et curieux, il préfère observer le monde depuis les hauteurs. Il s’épanouit avec des jeux et de l’exploration." },
+			{ name:"Norvégien", origin:"Norvège", size:"Grand", energy:2, calm:2, social:2, alone:2, first:2, tags:["Aventurier","Doux"], about:"Robuste et indépendant, il aime grimper et observer. Un arbre à chat solide sera son petit royaume." },
+			{ name:"Exotic Shorthair", origin:"États-Unis", size:"Moyen", energy:1, calm:3, social:2, alone:2, first:3, tags:["Détendu","Câlin"], about:"Un compagnon calme et affectueux, qui apprécie le confort. Son visage demande une attention particulière au quotidien." },
+			{ name:"Scottish Fold", origin:"Écosse", size:"Moyen", energy:1, calm:3, social:2, alone:2, first:2, tags:["Doux","Observateur"], about:"Souvent tranquille et proche de son foyer. La race est associée à des enjeux de santé : demandez conseil au vétérinaire." },
+			{ name:"Oriental", origin:"Thaïlande", size:"Moyen", energy:3, calm:1, social:3, alone:0, first:2, tags:["Bavard","Très proche"], about:"Sociable, curieux et volontiers bavard, il aime les échanges et la présence de ses proches." },
+			{ name:"Bleu russe", origin:"Russie", size:"Moyen", energy:2, calm:3, social:1, alone:2, first:2, tags:["Réservé","Élégant"], about:"Réservé au premier abord, il s’attache avec douceur à un environnement prévisible et calme." },
+			{ name:"Turc de Van", origin:"Turquie", size:"Grand", energy:3, calm:1, social:2, alone:2, first:2, tags:["Actif","Curieux"], about:"Énergique et explorateur, il apprécie les espaces de jeu et les occasions de grimper." },
+			{ name:"American Shorthair", origin:"États-Unis", size:"Moyen", energy:2, calm:2, social:2, alone:2, first:3, tags:["Facile à vivre","Joueur"], about:"Équilibré et adaptable, il aime jouer à son rythme puis retrouver son coin préféré." },
+			{ name:"Manx", origin:"Île de Man", size:"Moyen", energy:2, calm:2, social:2, alone:2, first:2, tags:["Loyal","Malin"], about:"Attachant et intelligent, il aime les jeux interactifs et les habitudes rassurantes." },
+			{ name:"Somali", origin:"Somalie", size:"Moyen", energy:3, calm:1, social:2, alone:1, first:2, tags:["Joueur","Alerte"], about:"Vif et agile, il garde longtemps son goût du jeu et aime suivre ce qui se passe à la maison." },
+			{ name:"Burmese", origin:"Birmanie", size:"Moyen", energy:2, calm:2, social:3, alone:0, first:3, tags:["Sociable","Affectueux"], about:"Très orienté vers les humains, il aime la compagnie et les moments de jeu partagés." },
+			{ name:"Korat", origin:"Thaïlande", size:"Moyen", energy:2, calm:2, social:3, alone:0, first:2, tags:["Fidèle","Sensible"], about:"Sensible et très attaché à son foyer, il préfère les ambiances douces et la compagnie familière." },
+			{ name:"Singapura", origin:"Singapour", size:"Petit", energy:2, calm:2, social:3, alone:0, first:2, tags:["Mini format","Curieux"], about:"Petit gabarit, grand intérêt pour tout ce qui bouge. Il apprécie les jeux et une présence rassurante." },
+			{ name:"Munchkin", origin:"États-Unis", size:"Petit", energy:2, calm:2, social:2, alone:2, first:2, tags:["Petit format","Joueur"], about:"Curieux et joueur, il compense volontiers sa petite taille par une grande envie d’explorer." }
+		].map((cat, index) => ({ ...cat, id:index, image:`https://images.unsplash.com/photo-${photoIds[index]}?auto=format&fit=crop&w=720&q=82`, imageLarge:`https://images.unsplash.com/photo-${photoIds[index]}?auto=format&fit=crop&w=1100&q=85` }));
+
+		const grid = document.querySelector("#cat-grid");
+		const searchInput = document.querySelector("#search");
+		const emptyState = document.querySelector("#empty-state");
+		const overlay = document.querySelector("#quiz-overlay");
+		const quizView = document.querySelector(".quiz-view");
+		const detailView = document.querySelector("#detail-view");
+		let favorites = new Set();
+		try { favorites = new Set(JSON.parse(localStorage.getItem("chats-minuit-favorites") || "[]")); } catch { localStorage.removeItem("chats-minuit-favorites"); }
+		let activeFilter = "Tous";
+		let favoritesOnly = false;
+
+		const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (char) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[char]));
+
+		function matchesFilter(cat) {
+			const query = searchInput.value.trim().toLocaleLowerCase("fr");
+			const searchable = [cat.name, cat.origin, cat.size, cat.about, ...cat.tags].join(" ").toLocaleLowerCase("fr");
+			const queryMatch = !query || searchable.includes(query);
+			const filterMatch = activeFilter === "Tous" || cat.size === activeFilter || (activeFilter === "Calme" && cat.calm === 3) || (activeFilter === "Joueur" && cat.energy >= 2);
+			return queryMatch && filterMatch && (!favoritesOnly || favorites.has(cat.id));
+		}
+
+		function renderCats() {
+			const visibleCats = cats.filter(matchesFilter);
+			grid.innerHTML = visibleCats.map((cat, index) => {
+				const photoSize = ["photo-tall", "photo-medium", "photo-short"][index % 3];
+				const isFavorite = favorites.has(cat.id);
+				return `<article class="cat-card">
+					<div class="photo-wrap"><img class="cat-photo ${photoSize}" src="${cat.image}" alt="Chat de race ${escapeHtml(cat.name)}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=720&q=80'"><span class="temperament">${escapeHtml(cat.tags[0])}</span>
+						<button class="heart-button ${isFavorite ? "is-favorite" : ""}" type="button" data-favorite="${cat.id}" aria-label="${isFavorite ? "Retirer" : "Ajouter"} ${escapeHtml(cat.name)} ${isFavorite ? "des" : "aux"} favoris" aria-pressed="${isFavorite}"><svg viewBox="0 0 24 24"><path d="M20.8 8.8c0 5.2-8.8 10-8.8 10s-8.8-4.8-8.8-10A4.5 4.5 0 0 1 12 6.4a4.5 4.5 0 0 1 8.8 2.4Z"/></svg></button>
+					</div>
+					<div class="cat-info"><div class="cat-title-row"><h3 class="cat-title">${escapeHtml(cat.name)}</h3><span class="cat-origin">${escapeHtml(cat.origin)}</span></div>
+						<p class="cat-summary">${escapeHtml(cat.about)}</p><div class="cat-meta">${cat.tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
+						<div class="card-bottom"><span class="size-label">Gabarit ${escapeHtml(cat.size.toLowerCase())}</span><button class="detail-button" type="button" data-detail="${cat.id}">Son petit portrait ↗</button></div>
+					</div>
+				</article>`;
+			}).join("");
+			document.querySelector("#result-count").textContent = `${visibleCats.length} ${visibleCats.length === 1 ? "portrait" : "portraits"}`;
+			document.querySelector("#favorite-count").textContent = favorites.size;
+			emptyState.style.display = visibleCats.length ? "none" : "block";
+			grid.style.display = visibleCats.length ? "block" : "none";
+		}
+
+		function openOverlay(view = "quiz") {
+			overlay.classList.add("is-open");
+			document.body.style.overflow = "hidden";
+			quizView.style.display = view === "quiz" ? "block" : "none";
+			detailView.classList.toggle("is-visible", view === "detail");
+		}
+
+		function closeOverlay() {
+			overlay.classList.remove("is-open");
+			document.body.style.overflow = "";
+			document.querySelector("#match-results").classList.remove("is-visible");
+			detailView.classList.remove("is-visible");
+			quizView.style.display = "block";
+		}
+
+		document.querySelectorAll("[data-open-quiz]").forEach((button) => button.addEventListener("click", () => openOverlay("quiz")));
+		document.querySelector(".dialog-close").addEventListener("click", closeOverlay);
+		overlay.addEventListener("click", (event) => { if (event.target === overlay) closeOverlay(); });
+		document.addEventListener("keydown", (event) => { if (event.key === "Escape" && overlay.classList.contains("is-open")) closeOverlay(); });
+		searchInput.addEventListener("input", renderCats);
+		document.querySelector("#filters").addEventListener("click", (event) => {
+			const button = event.target.closest("[data-filter]");
+			if (!button) return;
+			activeFilter = button.dataset.filter;
+			document.querySelectorAll(".filter-button").forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+			renderCats();
+		});
+		document.querySelector("#favorites-toggle").addEventListener("click", (event) => {
+			favoritesOnly = !favoritesOnly;
+			event.currentTarget.setAttribute("aria-pressed", String(favoritesOnly));
+			renderCats();
+		});
+		grid.addEventListener("click", (event) => {
+			const favoriteButton = event.target.closest("[data-favorite]");
+			const detailButton = event.target.closest("[data-detail]");
+			if (favoriteButton) {
+				const id = Number(favoriteButton.dataset.favorite);
+				favorites.has(id) ? favorites.delete(id) : favorites.add(id);
+				try { localStorage.setItem("chats-minuit-favorites", JSON.stringify([...favorites])); } catch { /* Les favoris restent disponibles pendant cette visite. */ }
+				renderCats();
+			}
+			if (detailButton) {
+				const cat = cats[Number(detailButton.dataset.detail)];
+				detailView.innerHTML = `<div class="section-overline">${escapeHtml(cat.origin)} · Gabarit ${escapeHtml(cat.size.toLowerCase())}</div><img class="detail-photo" src="${cat.imageLarge}" alt="Chat de race ${escapeHtml(cat.name)}"><h2>${escapeHtml(cat.name)}</h2><p class="detail-copy">${escapeHtml(cat.about)}</p><div class="detail-stats"><div class="detail-stat"><strong>${cat.energy}/3</strong><span>Besoin de jeu</span></div><div class="detail-stat"><strong>${cat.social}/3</strong><span>Besoin de présence</span></div><div class="detail-stat"><strong>${cat.first}/3</strong><span>Pour débuter</span></div></div><p class="detail-copy">Ce portrait de race donne des repères, pas des certitudes. L’âge, la santé et l’histoire de chaque chat comptent. Les refuges peuvent vous aider à rencontrer un compagnon dont le caractère correspond à votre foyer.</p>`;
+				openOverlay("detail");
+			}
+		});
+
+		document.querySelector("#quiz-form").addEventListener("submit", (event) => {
+			event.preventDefault();
+			const answers = new FormData(event.currentTarget);
+			const activity = answers.get("activity");
+			const home = answers.get("home");
+			const experience = answers.get("experience");
+			const alone = answers.get("alone");
+			const scored = cats.map((cat) => {
+				let score = 0;
+				if (activity === "calme") score += cat.energy === 1 ? 3 : cat.energy === 2 ? 1 : -1;
+				if (activity === "modere") score += cat.energy === 2 ? 3 : 1;
+				if (activity === "actif") score += cat.energy === 3 ? 3 : cat.energy === 2 ? 1 : -1;
+				if (home === "appartement") score += cat.size === "Petit" || cat.size === "Moyen" ? 2 : 1;
+				if (home === "maison") score += cat.size === "Grand" ? 2 : 1;
+				if (experience === "debutant") score += cat.first;
+				if (experience === "aime") score += cat.first === 1 ? 1 : 2;
+				if (alone === "short") score += cat.social === 3 ? 2 : 1;
+				if (alone === "medium") score += cat.alone === 2 ? 2 : 1;
+				if (alone === "long") score += cat.alone === 3 ? 2 : cat.alone === 0 ? -2 : 1;
+				return { cat, score };
+			}).sort((a, b) => b.score - a.score).slice(0, 3);
+			const results = document.querySelector("#match-results");
+			results.innerHTML = `<h3>Trois caractères à rencontrer</h3>${scored.map(({ cat, score }) => `<div class="match-item"><div><strong>${escapeHtml(cat.name)}</strong><small>${escapeHtml(cat.tags.join(" · "))}</small></div><span class="match-score">${Math.max(62, Math.min(97, 70 + score * 3))}% d’affinité</span></div>`).join("")}<p class="detail-copy" style="margin:11px 0 0">Une suggestion n’est pas une garantie : prenez le temps de rencontrer le chat et d’échanger avec son refuge.</p>`;
+			results.classList.add("is-visible");
+		});
+
+		renderCats();
+	</script>
+</body>
+</html>
